@@ -1,0 +1,48 @@
+div {
+  background-color: grey;
+}
+
+#container {
+  background-color: white;
+  width: 900px;
+  margin: 0 auto;
+}
+
+#header {
+  height: 70px;
+  width: 900px;
+  margin-bottom: 10px;
+}
+
+#room {
+  height: 280px;
+  width: 400px;
+  margin-bottom: 10px;
+}
+
+#tasks {
+  height: 130px;
+  width: 690px;
+  margin-bottom: 10px;
+}
+
+#doors {
+  height: 130px;
+  width: 690px;
+  margin-bottom: 10px;
+}
+
+#rightmenu {
+  height: auto;
+  height: 560px;
+  width: 200px;
+  float: right;
+}
+
+#floorplan {
+  height: auto;
+  height: 280px;
+  width: 280px;
+  float: right;
+  margin-right: 10px;
+}
