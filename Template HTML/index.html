@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/BoxModelDStyle.css" />
+    <title>My web Game</title>
+  </head>
+
+  <body>
+    <div id="myHeader"></div>
+
+    <!--The jumbotron-->
+    <div class="container">
+        <div class="jumbotron">
+            <h2>Welcome to my game!</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse feugiat nibh ac mauris pretium, vel commodo nisl auctor. Duis eu sem et lorem placerat convallis vel vel sem. Praesent sed nisi id nibh rutrum placerat sit amet et nisl. Nunc at pretium metus. Vestibulum eget semper quam. Aenean ac sodales nulla.</p>
+            <a class="btn btn-primary btn-lg" href="game.html" role="button">Play!</a>
+        </div>
+    </div>
+
+    <!--The script references-->
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="http://www.w3schools.com/lib/w3data.js"></script>
+    <script>
+        switch(window.location.protocol)
+        {
+           case 'http:':
+           case 'https:':
+              alert("ONLINE");
+               $(function(){
+                 $("#myHeader").load("header.html");
+               });
+               break;
+           case 'file:':
+              alert("OFFLINE");
+
+              var headerLocation = document.URL;
+              headerLocation = headerLocation.substring(0, headerLocation.lastIndexOf("/")) + "/header.html";
+
+              var content = //GET LOCAL FILE AT headerLocation
+
+              document.getElementById("myHeader").innerHTML = content;
+
+              break;
+           default:
+               alert("OTHER");
+               break;
+       }
+    </script>
+  </body>
+
+  <!--The footer-->
+  <footer>
+      <div class="container">
+          <hr/>
+          <p>This is the footer</p>
+      </div>
+  </footer>
+</html>
