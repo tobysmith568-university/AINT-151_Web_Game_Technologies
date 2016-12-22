@@ -1,4 +1,15 @@
 .door{
-  margin-top:5px;
+  margin-bottom:5px;
   margin-left:5px;
+}
+
+.task{
+  margin-bottom:5px;
+  margin-left:5px;
+}
+.btn.nohover:hover {
+    /* here copy default .btn class styles */
+    background-color: #fff;
+    cursor:default !important;
+    /* or something like that */
 }
