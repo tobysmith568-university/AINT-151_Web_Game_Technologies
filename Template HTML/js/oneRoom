@@ -1,0 +1,21 @@
+,
+{
+  name:"000",
+  index:000,
+  floorplan:"000.png",
+  description:"000",
+  tasks:
+    [
+    ],
+  doors:
+    [
+      {
+        name:"The door name",
+        index:0,
+        knownRoom:false,
+        locked:false,
+        keySnowflakes:[],
+        leadsTo:000
+      }
+    ]
+}
