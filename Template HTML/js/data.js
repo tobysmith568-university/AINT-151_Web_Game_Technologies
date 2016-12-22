@@ -1,7 +1,6 @@
 var rooms = [//All the rooms of the map and their data
   {
     name:"Patient Room 5",//This the header of the webpage
-    index:0,
     floorplan:"patientRoom0.png",//This is a top-down floorplan image for the room
     description:"This is a generic patient room in a hospital with not much in it apart from a bed and a a cabinet with two draws in it.",//This is the paragraph of the webpage
     tasks:
@@ -9,27 +8,31 @@ var rooms = [//All the rooms of the map and their data
     and then a few words on a button to show it's action*/
       [
         {
-          name:"The task name 001",//This is the text for the button
-          index:0,//This index, along with the current room index, links to the actions in RunTask()
-          enabled:true,//False means the task's button is disabled
-          keySnowflake:["001"],//This unique ID links to a prerequisite inventory item
+          name:"Look under the bed",//This is the text for the button
+          keys:[],//These unique IDs link to prerequisite inventory items
           /*Entering a room with an inventory item with this ID, will change the
           enabled setting - as will doing another task n the same room which gives you the needed item*/
-          results:[["The task description for task 001", 100]]//This is the text for the small paragraph
+          results:
+          [
+            {
+              message:"You find your wallet.",
+              chance:100,
+              item:
+              {
+                name:"Wallet",
+                snowflake:"002",
+                description:"This appears to be your wallet"
+              }
+            }
+          ]
         },
         {
-          name:"The task name 002",
-          index:1,
-          enabled:true,
-          keySnowflake:["002"],
-          results:[["The task description for task 002", 100]]
+          name:"Look in the top draw",
+          keys:["003"]
         },
         {
-          name:"The task name 003",
-          index:2,
-          enabled:true,
-          keySnowflake:["003"],
-          results:[["The task description for task 003", 100]]
+          name:"Look in the bottom draw",
+          keys:[]
         }
       ],
     doors:
@@ -37,8 +40,6 @@ var rooms = [//All the rooms of the map and their data
     this will show above a button to use the door*/
       [
         {
-          name:"Ward",//This is the text for the button
-          index:0,
           locked:false,//True means the door is locked
           keySnowflakes:[],//This unique ID links to a prerequisite inventory item
           /*Entering a room with an inventory item with this ID,
@@ -50,7 +51,6 @@ var rooms = [//All the rooms of the map and their data
   },
   {
     name:"Ward",
-    index:1,
     floorplan:"ward0.png",
     description:"The ward is empty, there is no one in sight and the whole hospital is silent.",
     tasks:
@@ -59,52 +59,40 @@ var rooms = [//All the rooms of the map and their data
     doors:
       [
         {
-          name:"Patient Room 1",
-          index:0,
           locked:false,
           keySnowflakes:[],
           leadsTo:3
         },
         {
-          name:"Patient Room 2",
-          index:1,
           locked:false,
           keySnowflakes:[],
           leadsTo:4
         },
         {
-          name:"Patient Room 3",
-          index:2,
           locked:false,
           keySnowflakes:[],
           leadsTo:5
         },
         {
-          name:"Patient Room 4",
-          index:3,
           locked:false,
           keySnowflakes:[],
           leadsTo:6
         },
         {
-          name:"Patient Room 5",
-          index:4,
           locked:false,
           keySnowflakes:[],
           leadsTo:0
         },
         {
-          name:"Reception Area",
-          index:5,
           locked:false,
           keySnowflakes:[],
           leadsTo:7
         }
       ]
   },
+  {},//Forgot to add a room of index: 2
   {
     name:"Patient Room 1",
-    index:3,
     floorplan:"patientRoom0.png",
     description:"This is a generic patient room in a hospital with not much in it apart from a bed and a a cabinet with two draws in it.",
     tasks:
@@ -113,12 +101,222 @@ var rooms = [//All the rooms of the map and their data
     doors:
       [
         {
-          name:"The door name",
-          index:0,
           locked:false,
           keySnowflakes:[],
           leadsTo:1
         }
       ]
+  },
+  {
+    name:"Patient Room 2",
+    floorplan:"patientRoom0.png",
+    description:"This is a generic patient room in a hospital with not much in it apart from a bed and a a cabinet with two draws in it.",
+    tasks:
+      [
+      ],
+    doors:
+      [
+        {
+          locked:false,
+          keySnowflakes:[],
+          leadsTo:1
+        }
+      ]
+  },
+  {
+    name:"Patient Room 3",
+    floorplan:"patientRoom0.png",
+    description:"This is a generic patient room in a hospital with not much in it apart from a bed and a a cabinet with two draws in it.",
+    tasks:
+      [
+      ],
+    doors:
+      [
+        {
+          locked:false,
+          keySnowflakes:[],
+          leadsTo:1
+        }
+      ]
+  },
+  {
+    name:"Patient Room 4",
+    floorplan:"patientRoom0.png",
+    description:"This is a generic patient room in a hospital with not much in it apart from a bed and a a cabinet with two draws in it.",
+    tasks:
+      [
+      ],
+    doors:
+      [
+        {
+          locked:false,
+          keySnowflakes:[],
+          leadsTo:1
+        }
+      ]
+  },
+  {
+    name:"Reception Area",
+    floorplan:"receptionArea0.png",
+    description:"This is a reception area for the floor you’re on.",
+    tasks:
+      [
+      ],
+    doors:
+      [
+        {
+          locked:false,
+          keySnowflakes:[],
+          leadsTo:8
+        },
+        {
+          locked:false,
+          keySnowflakes:[],
+          leadsTo:9
+        },
+        {
+          locked:false,
+          keySnowflakes:[],
+          leadsTo:10
+        },
+        {
+          locked:false,
+          keySnowflakes:[],
+          leadsTo:11
+        },
+        {
+          locked:false,
+          keySnowflakes:[],
+          leadsTo:1
+        },
+        {
+          locked:false,
+          keySnowflakes:[],
+          leadsTo:12
+        }
+      ]
+  },
+  {
+    name:"Office",
+    floorplan:"office0.png",
+    description:"This looks like the office of someone important, prehaps even the person who runs the hospital. As you walk in you accidentally kick the door stopper away and the slams shut and locks behind you - what sort of office needs a key from the inside??",
+    tasks:
+      [
+      ],
+    doors:
+      [
+        {
+          locked:true,
+          keySnowflakes:["016"],
+          leadsTo:7
+        }
+      ]
+  },
+  {
+    name:"Doctor's Lounge",
+    floorplan:"doctorsLounge0.png",
+    description:"000",
+    tasks:
+      [
+      ],
+    doors:
+      [
+        {
+          locked:false,
+          keySnowflakes:[],
+          leadsTo:7
+        }
+
+      ]
+  },
+  {
+    name:"Supplies Room",
+    floorplan:"supplies0.png",
+    description:"000",
+    tasks:
+      [
+      ],
+    doors:
+      [
+        {
+          locked:false,
+          keySnowflakes:[],
+          leadsTo:7
+        }
+      ]
+  },
+  {
+    name:"Visitors Waiting Room",
+    floorplan:"waitingRoom0.png",
+    description:"000",
+    tasks:
+      [
+      ],
+    doors:
+      [
+        {
+          locked:false,
+          keySnowflakes:[],
+          leadsTo:7
+        }
+      ]
+  },
+  {
+    name:"Lift",
+    floorplan:"lift0.png",
+    description:"000",
+    tasks:
+      [
+      ],
+    doors:
+      [
+        {
+          locked:false,
+          keySnowflakes:[],
+          leadsTo:7
+        }
+      ]
+  },
+  {
+    name:"Ward",
+    floorplan:"Ward0.png",
+    description:"000",
+    tasks:
+      [
+      ],
+    doors:
+      [
+      ]
+  },
+  {
+    name:"Patient Room 5",
+    floorplan:"patientRoom0.png",
+    description:"This is a generic patient room in a hospital with not much in it apart from a bed and a a cabinet with two draws in it.",
+    tasks:
+      [
+      ],
+    doors:
+      [
+      ]
+  },
+  {
+    name:"Patient Room 4",
+    floorplan:"patientRoom0.png",
+    description:"This is a generic patient room in a hospital with not much in it apart from a bed and a a cabinet with two draws in it.",
+    tasks:
+      [
+      ],
+    doors:
+      [
+      ]
   }
+
+
+
+
+
+
+
+
+
 ]
