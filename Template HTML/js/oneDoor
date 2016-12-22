@@ -1,8 +1,6 @@
 ,
   {
-    name:"The door name",
-    index:0,
     locked:false,
     keySnowflakes:[],
-    leadsTo:1
+    leadsTo:000
   }
