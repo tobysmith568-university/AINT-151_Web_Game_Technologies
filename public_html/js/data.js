@@ -17,6 +17,7 @@ var rooms = [//All the rooms of the map and their data
             {
               message:"You find your wallet.",
               chance:100,
+              isRepeatable:false,
               item:
               {
                 name:"Wallet",
@@ -28,11 +29,13 @@ var rooms = [//All the rooms of the map and their data
         },
         {
           name:"Look in the top draw",
-          keys:["003"]
+          keys:["003"],
+          results:[]
         },
         {
           name:"Look in the bottom draw",
-          keys:[]
+          keys:[],
+          results:[]
         }
       ],
     doors:

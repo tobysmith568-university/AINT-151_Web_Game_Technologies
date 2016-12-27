@@ -15,6 +15,12 @@ function OnLoad()
       localStorage.knownRooms = JSON.stringify(theArray);
       offerNewGame = false;
     }
+    //If no array of known inventory items exists:
+    if (localStorage.inventory === undefined){
+      var theArray = [];
+      localStorage.inventory = JSON.stringify(theArray);
+      offerNewGame = false;
+    }
     //If no array of room data exists:
     if (localStorage.rooms === undefined){
       localStorage.rooms = JSON.stringify(rooms);
@@ -68,7 +74,9 @@ function SelectRoom(roomIndex)
     }
 
 		document.getElementById('roomDoors').innerHTML += '<a type="button" class="' + theClass + '" onClick="SelectRoom(' + varRooms[roomIndex].doors[i].leadsTo + ')">' + theValue + '</a>';
-	}
+
+    ShowInventory();
+  }
 
   //Get the current room's tasks
 	document.getElementById('roomTasks').innerHTML = "";
@@ -97,24 +105,37 @@ function RunTask(taskIndex)
 {
     //Read from the localStorage
     var varRooms = JSON.parse(localStorage.rooms);
-    var varKnownRooms = JSON.parse(localStorage.knownRooms);
     var varRoomNumber = JSON.parse(localStorage.roomNumber);
 
+    //Add any items to the inventory that should be added and display them in a message
+    var lines = "";
+    for (var i = 0; i < varRooms[varRoomNumber].tasks[taskIndex].results.length; i++) {
+      var chance = Math.floor((Math.random() * 100) + 1);
+      if (chance <= varRooms[varRoomNumber].tasks[taskIndex].results[i].chance){
+        AddItem(varRooms[varRoomNumber].tasks[taskIndex].results[i].item);
+        lines += "\n" + varRooms[varRoomNumber].tasks[taskIndex].results[i].message;
+
+        if (varRooms[varRoomNumber].tasks[taskIndex].results[i].isRepeatable == false) {
+          varRooms[varRoomNumber].tasks[taskIndex].results = varRooms[varRoomNumber].tasks[taskIndex].results.splice(i);
+          //NON-FUNCTIONING CODE - NEEDS TO REMOVE TASK RESULTS IF THEY'RE NON-REPEATABLE
+        }
+      }
+    }
+    AddMessage(varRooms[varRoomNumber].tasks[taskIndex].name + "...", lines);
+
+    //Do any followup actions for the task
+    /*Things here could be like:
+    Removing the task from the room
+    Saying a message
+    Unlocking another room or task
+    */
     switch (varRoomNumber)
     {
       case 0:
         switch (taskIndex)
         {
           case 0:
-            var lines = "";
-            for (var i = 0; i < varRooms[varRoomNumber].tasks[taskIndex].results.length; i++) {
-              var chance = Math.floor((Math.random() * 100) + 1);
-              if (chance <= varRooms[varRoomNumber].tasks[taskIndex].results[i].chance){
-                AddItem(varRooms[varRoomNumber].tasks[taskIndex].results[i].item);
-                lines += "\n" + varRooms[varRoomNumber].tasks[taskIndex].results[i].message;
-              }
-            }
-            AddMessage(varRooms[varRoomNumber].tasks[taskIndex].name + "...", lines);
+
             break;
           case 1:
             /*Do stuff*/
@@ -131,24 +152,54 @@ function RunTask(taskIndex)
         /*Switch for tasks*/
         break;
     }
+
+    //Save the current data
+    localStorage.roomNumber = JSON.stringify(roomIndex);
+    localStorage.rooms = JSON.stringify(varRooms);
+
+    SelectRoom(varRoomNumber);
 }
 
 function AddItem(item)
 {
-  document.getElementById("inventory").innerHTML += '<p tag="' + item.snowflake + '">' + item.name + '</p>'
+  var varInventory = JSON.parse(localStorage.inventory);
+  varInventory.push(item);
+  localStorage.inventory = JSON.stringify(varInventory);
+
+  ShowInventory();
 }
 
 function AddMessage(title, message)
 {
   document.getElementById("messages").innerHTML = '<div class="panel panel-primary" id="theMessage"><div class="panel-heading">' + title + '<button type="button" class="close" data-target="#theMessage" data-dismiss="alert">&times;</button></div><div class="panel-body">' + message + '</a>'
-  
 }
 
-function newGame()
+function RemoveTask(roomIndex, taskIndex)
+{
+
+}
+
+function ShowInventory()
+{
+  var varInventory = JSON.parse(localStorage.inventory);
+
+  document.getElementById("inventory").innerHTML = "";
+  for (var i = 0; i < varInventory.length; i++) {
+
+    var node = document.getElementById("tmp_inventory").cloneNode(true);
+    node.id = "";
+    node.getElementsByClassName("nohover")[0].innerHTML = varInventory[i].name;
+    node.getElementsByClassName("nohover")[0].title = varInventory[i].description;
+    document.getElementById("inventory").appendChild(node);
+  }
+}
+
+function NewGame()
 {
   localStorage.removeItem("roomNumber");
   localStorage.removeItem("knownRooms");
   localStorage.removeItem("rooms");
+  localStorage.removeItem("inventory");
 
   window.location.replace("game.html");
 }
