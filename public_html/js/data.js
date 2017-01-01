@@ -11,31 +11,58 @@ var rooms = [//All the rooms of the map and their data
           name:"Look under the bed",//This is the text for the button
           keys:[],//These unique IDs link to prerequisite inventory items
           /*Entering a room with an inventory item with this ID, will change the
-          enabled setting - as will doing another task n the same room which gives you the needed item*/
-          results:
-          [
+          enabled setting - as will doing another task in the same room which gives you the needed item*/
+          results:[
             {
-              message:"You find your wallet.",
+              message:"You find nothing.",
               chance:100,
               isRepeatable:false,
-              item:
-              {
-                name:"Wallet",
-                snowflake:"002",
-                description:"This appears to be your wallet"
-              }
+              item:null
             }
           ]
         },
         {
           name:"Look in the top draw",
           keys:["003"],
-          results:[]
+          results:[
+            {
+              message:"You find nothing.",
+              chance:100,
+              isRepeatable:false,
+              item:null
+            }
+          ]
         },
         {
           name:"Look in the bottom draw",
           keys:[],
-          results:[]
+          results:[
+            {
+              message:"You find your clothes.",
+              chance:100,
+              isRepeatable:false,
+              item:
+              {
+                name:"Clothes",
+                snowflake:"001",
+                description:"You guess these are your clothes.",
+                actions:[
+                  {
+                    room:-1,
+                    name:"Put on your clothes"
+                  },
+                  {
+                    room:-1,
+                    name:"Test action"
+                  },
+                  {
+                    room:0,
+                    name:"Another test action"
+                  }
+                ]
+              }
+            }
+          ]
         }
       ],
     doors:
