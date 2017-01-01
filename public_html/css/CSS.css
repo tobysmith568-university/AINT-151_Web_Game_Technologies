@@ -8,13 +8,14 @@
   margin-left:5px;
 }
 
-.btn.nohover:hover {
-    /* here copy default .btn class styles */
-    background-color: #fff;
-    cursor:default !important;
-    /* or something like that */
+.btn.nohover, .btn.nohover:hover, .btn.nohover:active {
+  cursor:default;
+  background-color: #fff;
+  border-color: #cccccc;
+  outline: none;
+  box-shadow: none
 }
 
-#templates {
+.hidden {
   display: none;
 }
