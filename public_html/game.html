@@ -9,46 +9,62 @@
   </head>
 
   <body onLoad="OnLoad()">
-      <div id="templates">
-        <div class="btn-group btn-group-justified" id="tmp_inventory" role="group" aria-label="...">
-          <div class="btn-group" role="group">
-            <button type="button" title="" class="btn btn-default nohover">Item Name</button>
-          </div>
-          <div class="btn-group" role="group">
-            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Use
-              <span class="caret"></span>
-            </button>
-            <ul id="snowflake|menu" class="dropdown-menu dropdown-menu-right">
-              <li><a href="#" class="">This has no uses here</a></li>
-            </ul>
-          </div>
+    <!--Hidden templates to the copied and used elsewhere-->
+    <div class="hidden">
+      <!--An inventory item-->
+      <div id="tmp_inventory"  class="btn-group btn-group-justified" role="group" aria-label="...">
+        <div class="btn-group" role="group">
+          <button type="button" title="" class="btn btn-default nohover">Item Name</button>
+        </div>
+        <div class="btn-group" role="group">
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Use
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-right">
+          </ul>
         </div>
       </div>
+      <!--A inventory item action-->
+      <li id="tmp_action"><a onClick=""></a></li>
+      <!--A 'new game' prompt-->
+      <div id="tmp_newGame" class="alert alert-warning alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        Click <a style="cursor:pointer" class="alert-link" onClick="NewGame()">here</a> to start a new game.
+      </div>
+      <!--A task message-->
+      <div id="tmp_message" class="panel panel-primary">
+        <div class="panel-heading">
+          <button type="button" class="close" data-target="#theMessage" data-dismiss="alert">&times;</button>
+        </div>
+        <div class="panel-body"></div>
+      </div>
+    </div>
 
-
-      <!--The navbar-->
-      <nav class="navbar navbar-default navbar-static-top" role="navigation">
-          <div class="container">
-              <div class="navbar-header">
-                  <!--The collapsed navbar button-->
-                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
-                      <span class="sr-only">Toggle navigation</span>
-                      <span class="icon-bar"></span>
-                      <span class="icon-bar"></span>
-                      <span class="icon-bar"></span>
-                  </button>
-                  <a class="navbar-brand" href="index.html">My Game</a>
-              </div>
-              <!--The navbar items-->
-              <div class="collapse navbar-collapse navbar-right" id="navbar-collapse-1">
-                  <ul class="nav navbar-nav">
-                      <li><a href="index.html">Home</a></li>
-                      <li class="active"><a href="game.html">Game</a></li>
-                      <li><a href="#">Thing 3</a></li>
-                  </ul>
-              </div>
-          </div>
+    <!--The navbar-->
+    <nav class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <!--The collapsed navbar button-->
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">My Game</a>
+            </div>
+            <!--The navbar items-->
+            <div class="collapse navbar-collapse navbar-right" id="navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="index.html">Home</a></li>
+                    <li class="active"><a href="game.html">Game</a></li>
+                    <li><a href="#">Thing 3</a></li>
+                </ul>
+            </div>
+        </div>
       </nav>
 
       <!--The main content-->

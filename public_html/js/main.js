@@ -1,8 +1,8 @@
-//Method to run on page-load
+/*Method to run on page-load*/
 function OnLoad()
 {
   //If the browser supports localStorage:
-  if (typeof(Storage) !== "undefined") {
+  if (typeof(Storage) !== 'undefined') {
     var offerNewGame = true;
     //If no room number exists:
     if (localStorage.roomNumber === undefined){
@@ -28,19 +28,23 @@ function OnLoad()
     }
     //If a game is halfway though
     if (offerNewGame == true){
-      document.getElementById("messages").innerHTML = '<div class="alert alert-warning alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>Click <a class="alert-link" onClick="newGame()">here</a> to start a new game.</div>'
+      //document.getElementById('messages').innerHTML = '';
+
+      var node = document.getElementById('tmp_newGame').cloneNode(true);
+      node.id = '';
+      document.getElementById('messages').appendChild(node);
     }
   }
   //Else, if the browser doesn't support localStorage:
   else {
     //Redirect them to error.html
-    window.location.replace("error.html");
+    window.location.replace('error.html');
   }
   //Send the player to the current room
 	SelectRoom(JSON.parse(localStorage.roomNumber));
 }
 
-//Method to change the information to the current room
+/*Method to change the information to the current room*/
 function SelectRoom(roomIndex)
 {
   //Read from the localStorage
@@ -48,45 +52,44 @@ function SelectRoom(roomIndex)
   var varKnownRooms = JSON.parse(localStorage.knownRooms);
   var varRoomNumber = JSON.parse(localStorage.roomNumber);
 
-  //Clear any message
-  document.getElementById('messages').innerHTML = "";
-
   //Set the current room information
 	document.getElementById('roomTitle').innerHTML = varRooms[roomIndex].name;
 	document.getElementById('roomText').innerHTML = varRooms[roomIndex].description;
 
   //Set the current room's doors
-	document.getElementById('roomDoors').innerHTML = "";
+	document.getElementById('roomDoors').innerHTML = '';
 	for (var i = 0; i < varRooms[roomIndex].doors.length; i++)
 	{
-    var theClass = "btn btn-info door";
-    var theValue = "";
+    var theClass = 'btn btn-info door';
+    var theValue = '';
 
     if (varRooms[roomIndex].doors[i].locked == true){
-      theClass = theClass + " disabled";
+      theClass = theClass + ' disabled';
     }
 
     if (varKnownRooms.indexOf(varRooms[roomIndex].doors[i].leadsTo) == -1){
-      theValue = "Unknown Room";
+      theValue = 'Unknown Room';
     }
     else{
       theValue = varRooms[varRooms[roomIndex].doors[i].leadsTo].name;
     }
 
 		document.getElementById('roomDoors').innerHTML += '<a type="button" class="' + theClass + '" onClick="SelectRoom(' + varRooms[roomIndex].doors[i].leadsTo + ')">' + theValue + '</a>';
-
-    ShowInventory();
   }
 
   //Get the current room's tasks
-	document.getElementById('roomTasks').innerHTML = "";
+	document.getElementById('roomTasks').innerHTML = '';
 	for (var i = 0; i < varRooms[roomIndex].tasks.length; i++)
 	{
-    var theClass = "btn btn-info task";
-    var theValue = "";
+    var theClass = 'btn btn-info task';
+    var theValue = '';
 
     if (varRooms[roomIndex].tasks[i].keys.length > 0){
-      theClass = theClass + " disabled";
+      theClass = theClass + ' disabled';
+    }
+
+    if (varRooms[roomIndex].tasks[i].results.length === 0) {
+      theClass = theClass + ' hidden';
     }
 
     theValue = varRooms[roomIndex].tasks[i].name;
@@ -99,29 +102,39 @@ function SelectRoom(roomIndex)
   varKnownRooms.push(roomIndex);
   localStorage.knownRooms = JSON.stringify(varKnownRooms);
   localStorage.rooms = JSON.stringify(varRooms);
+
+  ShowInventory();
 }
 
+/*Method to calculate what happens when a task is ran*/
 function RunTask(taskIndex)
 {
-    //Read from the localStorage
+    /*Read from the localStorage*/
     var varRooms = JSON.parse(localStorage.rooms);
     var varRoomNumber = JSON.parse(localStorage.roomNumber);
 
-    //Add any items to the inventory that should be added and display them in a message
-    var lines = "";
+    /*Add any items to the inventory that should be added and display them in a message*/
+    var lines = '';
+    //For each possible result for the task being run:
     for (var i = 0; i < varRooms[varRoomNumber].tasks[taskIndex].results.length; i++) {
       var chance = Math.floor((Math.random() * 100) + 1);
+      //Calcuate if the result happens, if it does: add the item and message
       if (chance <= varRooms[varRoomNumber].tasks[taskIndex].results[i].chance){
         AddItem(varRooms[varRoomNumber].tasks[taskIndex].results[i].item);
-        lines += "\n" + varRooms[varRoomNumber].tasks[taskIndex].results[i].message;
+        lines += '\n' + varRooms[varRoomNumber].tasks[taskIndex].results[i].message;
 
+        //If the result can only happen once: remove it from the task
         if (varRooms[varRoomNumber].tasks[taskIndex].results[i].isRepeatable == false) {
-          varRooms[varRoomNumber].tasks[taskIndex].results = varRooms[varRoomNumber].tasks[taskIndex].results.splice(i);
-          //NON-FUNCTIONING CODE - NEEDS TO REMOVE TASK RESULTS IF THEY'RE NON-REPEATABLE
+          var results = varRooms[varRoomNumber].tasks[taskIndex].results;
+          results.splice(i, 1);
+          varRooms[varRoomNumber].tasks[taskIndex].results = results;
         }
       }
     }
-    AddMessage(varRooms[varRoomNumber].tasks[taskIndex].name + "...", lines);
+    //If there is no result: add a blank result
+    if (lines === '') lines = 'You find nothing.';
+    //Show the message with either the results or the blank one
+    AddMessage(varRooms[varRoomNumber].tasks[taskIndex].name + '...', lines);
 
     //Do any followup actions for the task
     /*Things here could be like:
@@ -154,52 +167,76 @@ function RunTask(taskIndex)
     }
 
     //Save the current data
-    localStorage.roomNumber = JSON.stringify(roomIndex);
+    localStorage.roomNumber = JSON.stringify(varRoomNumber);
     localStorage.rooms = JSON.stringify(varRooms);
 
     SelectRoom(varRoomNumber);
 }
 
+/*Method to add an item to the players inventory*/
 function AddItem(item)
 {
-  var varInventory = JSON.parse(localStorage.inventory);
-  varInventory.push(item);
-  localStorage.inventory = JSON.stringify(varInventory);
+  if (item != null) {
+    var varInventory = JSON.parse(localStorage.inventory);
+    varInventory.push(item);
+    localStorage.inventory = JSON.stringify(varInventory);
 
-  ShowInventory();
-}
-
-function AddMessage(title, message)
-{
-  document.getElementById("messages").innerHTML = '<div class="panel panel-primary" id="theMessage"><div class="panel-heading">' + title + '<button type="button" class="close" data-target="#theMessage" data-dismiss="alert">&times;</button></div><div class="panel-body">' + message + '</a>'
-}
-
-function RemoveTask(roomIndex, taskIndex)
-{
-
-}
-
-function ShowInventory()
-{
-  var varInventory = JSON.parse(localStorage.inventory);
-
-  document.getElementById("inventory").innerHTML = "";
-  for (var i = 0; i < varInventory.length; i++) {
-
-    var node = document.getElementById("tmp_inventory").cloneNode(true);
-    node.id = "";
-    node.getElementsByClassName("nohover")[0].innerHTML = varInventory[i].name;
-    node.getElementsByClassName("nohover")[0].title = varInventory[i].description;
-    document.getElementById("inventory").appendChild(node);
+    ShowInventory();
   }
 }
 
+/*Method to display a message to the user at the top of the screen*/
+function AddMessage(title, message)
+{
+  document.getElementById('messages').innerHTML = '';
+
+  var node = document.getElementById('tmp_message').cloneNode(true);
+  node.id = 'theMessage';
+  node.getElementsByClassName('panel-heading')[0].innerHTML = title + node.getElementsByClassName('panel-heading')[0].innerHTML;
+  node.getElementsByClassName('panel-body')[0].innerHTML = message;
+  document.getElementById('messages').appendChild(node);
+}
+
+/*Method to remove a task from a room*/
+/*CURRENTLY UNUSED*/
+function RemoveTask(roomIndex, taskIndex)
+{
+  //
+}
+
+/*Method to wipe the game data from the browser and reload the page*/
 function NewGame()
 {
-  localStorage.removeItem("roomNumber");
-  localStorage.removeItem("knownRooms");
-  localStorage.removeItem("rooms");
-  localStorage.removeItem("inventory");
+  localStorage.removeItem('roomNumber');
+  localStorage.removeItem('knownRooms');
+  localStorage.removeItem('rooms');
+  localStorage.removeItem('inventory');
 
-  window.location.replace("game.html");
+  window.location.replace('game.html');
+}
+
+/*Method to take all the items in the player's inventory
+and shpw them in the onscreen inventory*/
+function ShowInventory()
+{
+  var varInventory = JSON.parse(localStorage.inventory);
+  var varRoomNumber = JSON.parse(localStorage.roomNumber);
+
+  document.getElementById('inventory').innerHTML = '';
+  for (var i = 0; i < varInventory.length; i++) {
+    var node = document.getElementById('tmp_inventory').cloneNode(true);
+    node.id = 'item_' + varInventory[i].snowflake;
+    node.getElementsByClassName('nohover')[0].innerHTML = varInventory[i].name;
+    node.getElementsByClassName('nohover')[0].title = varInventory[i].description;
+    for (var ii = 0; ii < varInventory[i].actions.length; ii++) {
+      if (varInventory[i].actions[ii].room == -1 || varInventory[i].actions[ii].room == varRoomNumber) {
+        var action = document.getElementById('tmp_action').cloneNode(true);
+        action.ID = '';
+        action.childNodes[0].innerHTML = varInventory[i].actions[ii].name;
+        node.getElementsByClassName('')[0].appendChild(action);
+      }
+    }
+
+    document.getElementById('inventory').appendChild(node);
+  }
 }
