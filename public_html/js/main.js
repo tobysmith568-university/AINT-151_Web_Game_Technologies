@@ -11,7 +11,7 @@ function OnLoad()
     }
     //If no array of known rooms exists:
     if (localStorage.knownRooms === undefined){
-      var theArray = [0, 3, 4, 5, 6, 12, 14, 15, 16, 17, 18, 26, 27, 28, 29, 30];
+      var theArray = [0, 3, 4, 5, 6, 12, 14, 15, 16, 17, 18, 19, 24, 26, 27, 28, 29, 30];
       localStorage.knownRooms = JSON.stringify(theArray);
       offerNewGame = false;
     }
@@ -63,7 +63,7 @@ function SelectRoom(roomIndex)
     var theClass = 'btn btn-info door';
     var theValue = '';
 
-    if (varRooms[roomIndex].doors[i].locked == true){
+    if (varRooms[roomIndex].doors[i].keySnowflakes.length != 0){
       theClass = theClass + ' disabled';
     }
 
@@ -233,7 +233,7 @@ function ShowInventory()
         var action = document.getElementById('tmp_action').cloneNode(true);
         action.ID = '';
         action.childNodes[0].innerHTML = varInventory[i].actions[ii].name;
-        node.getElementsByClassName('')[0].appendChild(action);
+        node.getElementsByClassName('dropdown-menu')[0].appendChild(action);
       }
     }
 
