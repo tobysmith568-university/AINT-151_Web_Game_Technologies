@@ -3,10 +3,8 @@
   name:"000",
   floorplan:"000",
   description:"000",
-  tasks:
-    [
+  tasks:[
     ],
-  doors:
-    [
+  doors:[
     ]
 }
