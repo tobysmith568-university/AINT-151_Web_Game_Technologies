@@ -33,12 +33,7 @@ var rooms = [//All the rooms of the map and their data
                 name:"Wallet",
                 snowflake:"002",
                 description:"This appears to be your wallet. There's a little bit of money but no ID.",
-                actions:[
-                  {
-                    room:-1,
-                    name:"Put on your clothes"
-                  }
-                ]
+                actions:null
               }
             }
           ]
@@ -112,8 +107,8 @@ var rooms = [//All the rooms of the map and their data
         }
       ]
   },
-  {//Forgot to add a room of index: 2
-    //
+  {//Room ID 2
+    //I forgot to add a room with an ID of 2
   },
   {//Room ID 3
     name:"Patient Room 3A",
