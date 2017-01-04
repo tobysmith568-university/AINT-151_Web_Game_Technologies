@@ -88,9 +88,9 @@ function SelectRoom(roomIndex)
       theClass = theClass + ' disabled';
     }
 
-    if (varRooms[roomIndex].tasks[i].results.length === 0) {
+    /*if (varRooms[roomIndex].tasks[i].results.length === 0) {
       theClass = theClass + ' hidden';
-    }
+    }*/
 
     theValue = varRooms[roomIndex].tasks[i].name;
 
