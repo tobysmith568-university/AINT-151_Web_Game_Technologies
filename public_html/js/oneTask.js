@@ -1,0 +1,24 @@
+,
+{
+  name:"000",
+  keys:[],
+  results:[
+    {
+      message:"000",
+      chance:100,
+      isRepeatable:false,
+      item:
+      {
+        name:"000",
+        snowflake:"000",
+        description:"000",
+        actions:[
+          {
+            room:-1,
+            name:"000"
+          }
+        ]
+      }
+    }
+  ]
+}
