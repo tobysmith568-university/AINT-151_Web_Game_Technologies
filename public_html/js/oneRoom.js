@@ -1,10 +1,37 @@
 ,
-{
-  name:"000",
-  floorplan:"000",
-  description:"000",
-  tasks:[
-    ],
+{//Room index: Template
+  name:"",
+  image:"",
+  description:"",
   doors:[
-    ]
+    {
+      keys[],
+      leadsTo:0
+    }
+  ],
+  tasks:[
+    {
+      name:"",
+      keys:[],
+      results:[
+        {
+          message:"",
+          chance:100,
+          isRepeatable:false,
+          item:{
+              snowflake:"",
+              name:"",
+              description:"",
+              actions:[
+                {
+                  snowflake:"",
+                  roomIndex:0,
+                  name:""
+                }
+              ]
+            }
+        }
+      ]
+    }
+  ]
 }
