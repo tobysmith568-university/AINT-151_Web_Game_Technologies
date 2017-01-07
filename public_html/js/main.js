@@ -6,12 +6,12 @@ function OnLoad()
     var offerNewGame = true;
     //If no room number exists:
     if (localStorage.roomNumber === undefined){
-      localStorage.roomNumber = JSON.stringify(0);
+      localStorage.roomNumber = JSON.stringify(6);
       offerNewGame = false;
     }
     //If no array of known rooms exists:
     if (localStorage.knownRooms === undefined){
-      var theArray = [0, 3, 4, 5, 6, 12, 14, 15, 16, 17, 18, 19, 24, 26, 27, 28, 29, 30];
+      var theArray = [2, 3, 4, 5, 6, 9, 10, 13, 14, 15, 16, 17, 18, 19, 22, 24, 25, 26, 27, 28, 30, 32, 33];
       localStorage.knownRooms = JSON.stringify(theArray);
       offerNewGame = false;
     }
@@ -32,6 +32,7 @@ function OnLoad()
 
       var node = document.getElementById('tmp_newGame').cloneNode(true);
       node.id = '';
+      document.getElementById('messages').innerHTML = '';
       document.getElementById('messages').appendChild(node);
     }
   }
@@ -45,8 +46,11 @@ function OnLoad()
 }
 
 /*Method to change the information to the current room*/
-function SelectRoom(roomIndex)
+function SelectRoom(roomIndex, clearMessage)
 {
+  if (clearMessage)
+    document.getElementById('messages').innerHTML = '<div style="height:110px"/>';
+
   //Read from the localStorage
   var varRooms = JSON.parse(localStorage.rooms);
   var varKnownRooms = JSON.parse(localStorage.knownRooms);
@@ -63,10 +67,11 @@ function SelectRoom(roomIndex)
     var theClass = 'btn btn-info door';
     var theValue = '';
 
-    if (varRooms[roomIndex].doors[i].keySnowflakes.length != 0){
+    if (varRooms[roomIndex].doors[i].keys.length != 0){
       theClass = theClass + ' disabled';
     }
 
+    if (varRooms[varRooms[roomIndex].doors[i].leadsTo] != undefined)/*DEBUG ONLY*/
     if (varKnownRooms.indexOf(varRooms[roomIndex].doors[i].leadsTo) == -1){
       theValue = 'Unknown Room';
     }
@@ -74,7 +79,7 @@ function SelectRoom(roomIndex)
       theValue = varRooms[varRooms[roomIndex].doors[i].leadsTo].name;
     }
 
-		document.getElementById('roomDoors').innerHTML += '<a type="button" class="' + theClass + '" onClick="SelectRoom(' + varRooms[roomIndex].doors[i].leadsTo + ')">' + theValue + '</a>';
+		document.getElementById('roomDoors').innerHTML += '<a type="button" class="' + theClass + '" onClick="SelectRoom(' + varRooms[roomIndex].doors[i].leadsTo + ', true)">' + theValue + '</a>';
   }
 
   //Get the current room's tasks
@@ -97,9 +102,11 @@ function SelectRoom(roomIndex)
 		document.getElementById('roomTasks').innerHTML += '<a type="button" class="' + theClass + '" onClick="RunTask(' + i + ')">' + theValue + '</a>';
 	}
 
+  if (!contains(varKnownRooms, roomIndex))
+    varKnownRooms.push(roomIndex);
+
   //Save the current data
   localStorage.roomNumber = JSON.stringify(roomIndex);
-  varKnownRooms.push(roomIndex);
   localStorage.knownRooms = JSON.stringify(varKnownRooms);
   localStorage.rooms = JSON.stringify(varRooms);
 
@@ -173,6 +180,61 @@ function RunTask(taskIndex)
     SelectRoom(varRoomNumber);
 }
 
+/*Method to run code when an inventory item's action is clicked on*/
+function RunAction(itemSnowflake, actionSnowflake)
+{
+  var varRooms = JSON.parse(localStorage.rooms);
+  var varRoomNumber = JSON.parse(localStorage.roomNumber);
+  var varInventory = JSON.parse(localStorage.inventory);
+
+  switch (itemSnowflake) {
+    case "001":
+      switch (actionSnowflake) {
+        case 0:
+          AddItem({
+              snowflake:"017",
+              name:"Hospital gown",
+              description:"This is the hospital gown you were wearing",
+              actions:[
+                {
+                  snowflake:"0",
+                  roomIndex:-1,
+                  name:"Wear"
+                }
+              ]
+            });
+          RemoveItem("001");
+          break;
+      }
+      break;
+    case "017":
+      switch (actionSnowflake) {
+        case 0:
+          AddItem({
+              snowflake:"001",
+              name:"Clothes",
+              description:"You guess these are your clothes, they look like they fit",
+              actions:[
+                {
+                  snowflake:"0",
+                  roomIndex:-1,
+                  name:"Wear"
+                }
+              ]
+            });
+          RemoveItem("017");
+          break;
+        }
+      break;
+  }
+
+  localStorage.rooms = JSON.stringify(varRooms);
+  localStorage.roomNumber = JSON.stringify(varRoomNumber);
+
+  SelectRoom(varRoomNumber);
+
+}
+
 /*Method to add an item to the players inventory*/
 function AddItem(item)
 {
@@ -183,6 +245,20 @@ function AddItem(item)
 
     ShowInventory();
   }
+}
+
+/*Method to remove an item from the player's inventory via a snowflake*/
+function RemoveItem(snowflake)
+{
+  var varInventory = JSON.parse(localStorage.inventory);
+
+  for (var i = 0; i < varInventory.length; i++) {
+    if (varInventory[i].snowflake == snowflake) {
+      varInventory.splice(i, 1);
+      break;
+    }
+  }
+  localStorage.inventory = JSON.stringify(varInventory);
 }
 
 /*Method to display a message to the user at the top of the screen*/
@@ -229,9 +305,10 @@ function ShowInventory()
     node.getElementsByClassName('nohover')[0].innerHTML = varInventory[i].name;
     node.getElementsByClassName('nohover')[0].title = varInventory[i].description;
     for (var ii = 0; ii < varInventory[i].actions.length; ii++) {
-      if (varInventory[i].actions[ii].room == -1 || varInventory[i].actions[ii].room == varRoomNumber) {
+      if (varInventory[i].actions[ii].roomIndex == -1 || varInventory[i].actions[ii].roomIndex == varRoomNumber) {
         var action = document.getElementById('tmp_action').cloneNode(true);
         action.ID = '';
+        action.childNodes[0].href = 'javascript:RunAction("' + varInventory[i].snowflake + '", ' + varInventory[i].actions[ii].snowflake + ');'
         action.childNodes[0].innerHTML = varInventory[i].actions[ii].name;
         node.getElementsByClassName('dropdown-menu')[0].appendChild(action);
       }
@@ -239,4 +316,16 @@ function ShowInventory()
 
     document.getElementById('inventory').appendChild(node);
   }
+}
+
+/*Method to detect if an array contains an object.
+I'm using this rather than 'Array.indexOf' for compatibility reasons*/
+function contains(a, obj)
+{
+    for (var i = 0; i < a.length; i++) {
+        if (a[i] == obj) {
+            return true;
+        }
+    }
+    return false;
 }
