@@ -93,19 +93,18 @@ function SelectRoom(roomIndex, clearMessage)
       theClass = theClass + ' disabled';
     }
 
-    /*if (varRooms[roomIndex].tasks[i].results.length === 0) {
-      theClass = theClass + ' hidden';
-    }*/
-
     theValue = varRooms[roomIndex].tasks[i].name;
 
 		document.getElementById('roomTasks').innerHTML += '<a type="button" class="' + theClass + '" onClick="RunTask(' + i + ')">' + theValue + '</a>';
 	}
 
-  if (!contains(varKnownRooms, roomIndex))
-    varKnownRooms.push(roomIndex);
+  //Get the current room's image
+  document.getElementById('map').src = 'img/rooms/' + varRooms[roomIndex].image;
+
 
   //Save the current data
+  if (!contains(varKnownRooms, roomIndex))
+    varKnownRooms.push(roomIndex);
   localStorage.roomNumber = JSON.stringify(roomIndex);
   localStorage.knownRooms = JSON.stringify(varKnownRooms);
   localStorage.rooms = JSON.stringify(varRooms);
@@ -292,7 +291,7 @@ function NewGame()
 }
 
 /*Method to take all the items in the player's inventory
-and shpw them in the onscreen inventory*/
+and show them in the onscreen inventory*/
 function ShowInventory()
 {
   var varInventory = JSON.parse(localStorage.inventory);
@@ -302,8 +301,9 @@ function ShowInventory()
   for (var i = 0; i < varInventory.length; i++) {
     var node = document.getElementById('tmp_inventory').cloneNode(true);
     node.id = 'item_' + varInventory[i].snowflake;
-    node.getElementsByClassName('nohover')[0].innerHTML = varInventory[i].name;
-    node.getElementsByClassName('nohover')[0].title = varInventory[i].description;
+    node.getElementsByClassName('inventoryName')[0].innerHTML = varInventory[i].name;
+    node.getElementsByClassName('inventoryName')[0].title = varInventory[i].description;
+    node.getElementsByClassName('inventoryName')[0].setAttribute('onclick','AddMessage("' + varInventory[i].name + ':", "' + varInventory[i].description + '")');
     for (var ii = 0; ii < varInventory[i].actions.length; ii++) {
       if (varInventory[i].actions[ii].roomIndex == -1 || varInventory[i].actions[ii].roomIndex == varRoomNumber) {
         var action = document.getElementById('tmp_action').cloneNode(true);
@@ -312,6 +312,12 @@ function ShowInventory()
         action.childNodes[0].innerHTML = varInventory[i].actions[ii].name;
         node.getElementsByClassName('dropdown-menu')[0].appendChild(action);
       }
+    }
+    if (node.getElementsByClassName('dropdown-menu')[0].children.length == 0) {
+      var action = document.getElementById('tmp_action').cloneNode(true);
+      action.ID = '';
+      action.childNodes[0].innerHTML = 'No actions';
+      node.getElementsByClassName('dropdown-menu')[0].appendChild(action);
     }
 
     document.getElementById('inventory').appendChild(node);
