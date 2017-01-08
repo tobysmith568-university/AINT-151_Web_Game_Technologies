@@ -1,7 +1,7 @@
 var rooms = [//All the rooms of the map and their data
   {//Room index: 0
     name:"Floor 2 Reception",
-    image:"receptionArea0.png",
+    image:"receptionArea0.jpg",
     description:"This is a reception area for the floor you’re on. There isn't much in the room apart from a few chairs and a desk. One of the doors is labelled Lift Maintenance and another is labelled Visitor's waiting room. At the far end of the room is a lift. The call buttons for the lift are lit up by red backlights, the lift must be using the same backup generators as the emergency lights.",
     doors:[
       {
@@ -46,77 +46,77 @@ var rooms = [//All the rooms of the map and their data
                   {//Action: 0
                     snowflake:"0",
                     roomIndex:2,
-                    name:"Try to unlock the top draw"
+                    name:"Try to unlock the top drawer"
                   },
                   {//Action: 1
                     snowflake:"1",
                     roomIndex:3,
-                    name:"Try to unlock the top draw"
+                    name:"Try to unlock the top drawer"
                   },
                   {//Action: 2
                     snowflake:"2",
                     roomIndex:4,
-                    name:"Try to unlock the top draw"
+                    name:"Try to unlock the top drawer"
                   },
                   {//Action: 3
                     snowflake:"3",
                     roomIndex:5,
-                    name:"Try to unlock the top draw"
+                    name:"Try to unlock the top drawer"
                   },
                   {//Action: 4
                     snowflake:"4",
                     roomIndex:6,
-                    name:"Try to unlock the top draw"
+                    name:"Try to unlock the top drawer"
                   },
                   {//Action: 5
                     snowflake:"5",
                     roomIndex:13,
-                    name:"Try to unlock the top draw"
+                    name:"Try to unlock the top drawer"
                   },
                   {//Action: 6
                     snowflake:"6",
                     roomIndex:14,
-                    name:"Try to unlock the top draw"
+                    name:"Try to unlock the top drawer"
                   },
                   {//Action: 7
                     snowflake:"7",
                     roomIndex:15,
-                    name:"Try to unlock the top draw"
+                    name:"Try to unlock the top drawer"
                   },
                   {//Action: 8
                     snowflake:"8",
                     roomIndex:16,
-                    name:"Try to unlock the top draw"
+                    name:"Try to unlock the top drawer"
                   },
                   {//Action: 9
                     snowflake:"9",
                     roomIndex:17,
-                    name:"Try to unlock the top draw"
+                    name:"Try to unlock the top drawer"
                   },
                   {//Action: 10
                     snowflake:"10",
                     roomIndex:24,
-                    name:"Try to unlock the top draw"
+                    name:"Try to unlock the top drawer"
                   },
                   {//Action: 11
                     snowflake:"11",
                     roomIndex:25,
-                    name:"Try to unlock the top draw"
+                    name:"Try to unlock the top drawer"
                   },
                   {//Action: 12
                     snowflake:"12",
                     roomIndex:26,
-                    name:"Try to unlock the top draw"
+                    name:"Try to unlock the top drawer"
                   },
                   {//Action: 13
                     snowflake:"13",
                     roomIndex:27,
-                    name:"Try to unlock the top draw"
+                    name:"Try to unlock the top drawer"
                   },
                   {//Action: 14
                     snowflake:"14",
                     roomIndex:28,
-                    name:"Try to unlock the top draw"
+                    name:"Try to unlock the top drawer"
                   },
                   {//Action: 15
                     snowflake:"15",
@@ -210,7 +210,7 @@ var rooms = [//All the rooms of the map and their data
   },
   {//Room index: 1
     name:"Floor 2 Ward",
-    image:"ward0.png",
+    image:"ward0.jpg",
     description:"This ward is empty. There is nothing on any of the walls and there is nothing to do apart from walk elsewhere",
     doors:[
       {
@@ -242,8 +242,8 @@ var rooms = [//All the rooms of the map and their data
   },
   {//Room index: 2
     name:"Patient room 2A",
-    image:"patientroom0.png",
-    description:"This is a generic patient room in a hospital with not much in it apart from a bed and a cabinet with two draws in it.",
+    image:"patientroom0.jpg",
+    description:"This is a generic patient room in a hospital with not much in it apart from a bed and a cabinet with two drawers in it.",
     doors:[
       {
         keys:[],
@@ -264,7 +264,7 @@ var rooms = [//All the rooms of the map and their data
         ]
       },
       {
-        name:"Look in the top draw",
+        name:"Look in the top drawer",
         keys:["003"],
         results:[
           {
@@ -301,77 +301,77 @@ var rooms = [//All the rooms of the map and their data
                   {
                     snowflake:"1",
                     roomIndex:2,
-                    name:"Try to unlock the top draw"
+                    name:"Try to unlock the top drawer"
                   },
                   {
                     snowflake:"2",
                     roomIndex:3,
-                    name:"Try to unlock the top draw"
+                    name:"Try to unlock the top drawer"
                   },
                   {
                     snowflake:"3",
                     roomIndex:4,
-                    name:"Try to unlock the top draw"
+                    name:"Try to unlock the top drawer"
                   },
                   {
                     snowflake:"4",
                     roomIndex:5,
-                    name:"Try to unlock the top draw"
+                    name:"Try to unlock the top drawer"
                   },
                   {
                     snowflake:"5",
                     roomIndex:6,
-                    name:"Try to unlock the top draw"
+                    name:"Try to unlock the top drawer"
                   },
                   {
                     snowflake:"6",
                     roomIndex:13,
-                    name:"Try to unlock the top draw"
+                    name:"Try to unlock the top drawer"
                   },
                   {
                     snowflake:"7",
                     roomIndex:14,
-                    name:"Try to unlock the top draw"
+                    name:"Try to unlock the top drawer"
                   },
                   {
                     snowflake:"8",
                     roomIndex:15,
-                    name:"Try to unlock the top draw"
+                    name:"Try to unlock the top drawer"
                   },
                   {
                     snowflake:"9",
                     roomIndex:16,
-                    name:"Try to unlock the top draw"
+                    name:"Try to unlock the top drawer"
                   },
                   {
                     snowflake:"10",
                     roomIndex:17,
-                    name:"Try to unlock the top draw"
+                    name:"Try to unlock the top drawer"
                   },
                   {
                     snowflake:"11",
                     roomIndex:24,
-                    name:"Try to unlock the top draw"
+                    name:"Try to unlock the top drawer"
                   },
                   {
                     snowflake:"12",
                     roomIndex:25,
-                    name:"Try to unlock the top draw"
+                    name:"Try to unlock the top drawer"
                   },
                   {
                     snowflake:"13",
                     roomIndex:26,
-                    name:"Try to unlock the top draw"
+                    name:"Try to unlock the top drawer"
                   },
                   {
                     snowflake:"14",
                     roomIndex:27,
-                    name:"Try to unlock the top draw"
+                    name:"Try to unlock the top drawer"
                   },
                   {
                     snowflake:"15",
                     roomIndex:28,
-                    name:"Try to unlock the top draw"
+                    name:"Try to unlock the top drawer"
                   },
                   {
                     snowflake:"16",
@@ -394,11 +394,11 @@ var rooms = [//All the rooms of the map and their data
         ]
       },
       {
-        name:"Look in the bottom draw",
+        name:"Look in the bottom drawer",
         keys:[],
         results:[
           {
-            message:"You find nothing in the bottom draw",
+            message:"You find nothing in the bottom drawer",
             chance:100,
             isRepeatable:true,
             item:null
@@ -409,8 +409,8 @@ var rooms = [//All the rooms of the map and their data
   },
   {//Room index: 3
     name:"Patient Room 2B",
-    image:"patientroom0.png",
-    description:"This is a generic patient room in a hospital with not much in it apart from a bed and a cabinet with two draws in it.",
+    image:"patientroom0.jpg",
+    description:"This is a generic patient room in a hospital with not much in it apart from a bed and a cabinet with two drawers in it.",
     doors:[
       {
         keys:[],
@@ -431,11 +431,11 @@ var rooms = [//All the rooms of the map and their data
         ]
       },
       {
-        name:"Look in the top draw",
+        name:"Look in the top drawer",
         keys:["003"],
         results:[
           {
-            message:"There's nothing in the top draw",
+            message:"There's nothing in the top drawer",
             chance:100,
             isRepeatable:true,
             item:null
@@ -443,11 +443,11 @@ var rooms = [//All the rooms of the map and their data
         ]
       },
       {
-        name:"Look in the bottom draw",
+        name:"Look in the bottom drawer",
         keys:[],
         results:[
           {
-            message:"There's nothing in the bottom draw",
+            message:"There's nothing in the bottom drawer",
             chance:100,
             isRepeatable:false,
             item:null
@@ -458,8 +458,8 @@ var rooms = [//All the rooms of the map and their data
   },
   {//Room index: 4
     name:"Patient Room 2C",
-    image:"patientroom0.png",
-    description:"This is a generic patient room in a hospital with not much in it apart from a bed and a cabinet with two draws in it.",
+    image:"patientroom0.jpg",
+    description:"This is a generic patient room in a hospital with not much in it apart from a bed and a cabinet with two drawers in it.",
     doors:[
       {
         keys:[],
@@ -480,7 +480,7 @@ var rooms = [//All the rooms of the map and their data
         ]
       },
       {
-        name:"Look in the top draw",
+        name:"Look in the top drawer",
         keys:["003"],
         results:[
           {
@@ -503,11 +503,11 @@ var rooms = [//All the rooms of the map and their data
         ]
       },
       {
-        name:"Look in the bottom draw",
+        name:"Look in the bottom drawer",
         keys:[],
         results:[
           {
-            message:"There is nothing in the bottom draw",
+            message:"There is nothing in the bottom drawer",
             chance:100,
             isRepeatable:true,
             item:null
@@ -518,8 +518,8 @@ var rooms = [//All the rooms of the map and their data
   },
   {//Room index: 5
     name:"Patient Room 2D",
-    image:"patientroom0.png",
-    description:"This is a generic patient room in a hospital with not much in it apart from a bed and a cabinet with two draws in it.",
+    image:"patientroom1.jpg",
+    description:"This is a generic patient room in a hospital with not much in it apart from a bed and a cabinet with two drawers in it.",
     doors:[
       {
         keys:[],
@@ -540,11 +540,11 @@ var rooms = [//All the rooms of the map and their data
         ]
       },
       {
-        name:"Look in the top draw",
+        name:"Look in the top drawer",
         keys:["003"],
         results:[
           {
-            message:"There is nothing in the top draw",
+            message:"There is nothing in the top drawer",
             chance:100,
             isRepeatable:true,
             item:null
@@ -552,11 +552,11 @@ var rooms = [//All the rooms of the map and their data
         ]
       },
       {
-        name:"Look in the bottom draw",
+        name:"Look in the bottom drawer",
         keys:[],
         results:[
           {
-            message:"There is nothing in the bottom draw",
+            message:"There is nothing in the bottom drawer",
             chance:100,
             isRepeatable:true,
             item:null
@@ -567,8 +567,8 @@ var rooms = [//All the rooms of the map and their data
   },
   {//Room index: 6
     name:"Patient Room 2E",
-    image:"patientroom0.png",
-    description:"This is a generic patient room in a hospital with not much in it apart from a bed and a cabinet with two draws in it.",
+    image:"patientroom1.jpg",
+    description:"This is a generic patient room in a hospital with not much in it apart from a bed and a cabinet with two drawers in it.",
     doors:[
       {
         keys:[],
@@ -589,7 +589,7 @@ var rooms = [//All the rooms of the map and their data
         ]
       },
       {
-        name:"Look in the top draw",
+        name:"Look in the top drawer",
         keys:["003"],
         results:[
           {
@@ -612,7 +612,7 @@ var rooms = [//All the rooms of the map and their data
         ]
       },
       {
-        name:"Look in the bottom draw",
+        name:"Look in the bottom drawer",
         keys:[],
         results:[
           {
@@ -638,7 +638,7 @@ var rooms = [//All the rooms of the map and their data
   },
   {//Room index: 7
     name:"Office",
-    image:"office0.png",
+    image:"office0.jpg",
     description:"This looks like the office of someone important, perhaps even the person who runs the hospital. As you walk in you accidentally kick the door stopper away and the door slams shut and locks behind you - what sort of office needs a key from the inside?? Who ever the office belongs to clearly left in a rush, there's paper work all over the desk and they left their coat behind hanging on a hook by the door.",
     doors:[
       {
@@ -648,7 +648,7 @@ var rooms = [//All the rooms of the map and their data
     ],
     tasks:[
       {
-        name:"Search the desk draws",
+        name:"Search the desk drawers",
         keys:[],
         results:[
           {
@@ -690,77 +690,77 @@ var rooms = [//All the rooms of the map and their data
                   {
                     snowflake:"2",
                     roomIndex:2,
-                    name:"Try to unlock the top draw"
+                    name:"Try to unlock the top drawer"
                   },
                   {
                     snowflake:"3",
                     roomIndex:3,
-                    name:"Try to unlock the top draw"
+                    name:"Try to unlock the top drawer"
                   },
                   {
                     snowflake:"4",
                     roomIndex:4,
-                    name:"Try to unlock the top draw"
+                    name:"Try to unlock the top drawer"
                   },
                   {
                     snowflake:"5",
                     roomIndex:5,
-                    name:"Try to unlock the top draw"
+                    name:"Try to unlock the top drawer"
                   },
                   {
                     snowflake:"6",
                     roomIndex:6,
-                    name:"Try to unlock the top draw"
+                    name:"Try to unlock the top drawer"
                   },
                   {
                     snowflake:"7",
                     roomIndex:13,
-                    name:"Try to unlock the top draw"
+                    name:"Try to unlock the top drawer"
                   },
                   {
                     snowflake:"8",
                     roomIndex:14,
-                    name:"Try to unlock the top draw"
+                    name:"Try to unlock the top drawer"
                   },
                   {
                     snowflake:"9",
                     roomIndex:15,
-                    name:"Try to unlock the top draw"
+                    name:"Try to unlock the top drawer"
                   },
                   {
                     snowflake:"10",
                     roomIndex:16,
-                    name:"Try to unlock the top draw"
+                    name:"Try to unlock the top drawer"
                   },
                   {
                     snowflake:"11",
                     roomIndex:17,
-                    name:"Try to unlock the top draw"
+                    name:"Try to unlock the top drawer"
                   },
                   {
                     snowflake:"12",
                     roomIndex:24,
-                    name:"Try to unlock the top draw"
+                    name:"Try to unlock the top drawer"
                   },
                   {
                     snowflake:"13",
                     roomIndex:25,
-                    name:"Try to unlock the top draw"
+                    name:"Try to unlock the top drawer"
                   },
                   {
                     snowflake:"14",
                     roomIndex:26,
-                    name:"Try to unlock the top draw"
+                    name:"Try to unlock the top drawer"
                   },
                   {
                     snowflake:"15",
                     roomIndex:27,
-                    name:"Try to unlock the top draw"
+                    name:"Try to unlock the top drawer"
                   },
                   {
                     snowflake:"16",
                     roomIndex:28,
-                    name:"Try to unlock the top draw"
+                    name:"Try to unlock the top drawer"
                   },
                   {
                     snowflake:"17",
@@ -866,62 +866,62 @@ var rooms = [//All the rooms of the map and their data
                   {
                     snowflake:"3",
                     roomIndex:2,
-                    name:"Try to unlock the top draw"
+                    name:"Try to unlock the top drawer"
                   },
                   {
                     snowflake:"4",
                     roomIndex:3,
-                    name:"Try to unlock the top draw"
+                    name:"Try to unlock the top drawer"
                   },
                   {
                     snowflake:"5",
                     roomIndex:4,
-                    name:"Try to unlock the top draw"
+                    name:"Try to unlock the top drawer"
                   },
                   {
                     snowflake:"6",
                     roomIndex:5,
-                    name:"Try to unlock the top draw"
+                    name:"Try to unlock the top drawer"
                   },
                   {
                     snowflake:"7",
                     roomIndex:6,
-                    name:"Try to unlock the top draw"
+                    name:"Try to unlock the top drawer"
                   },
                   {
                     snowflake:"8",
                     roomIndex:13,
-                    name:"Try to unlock the top draw"
+                    name:"Try to unlock the top drawer"
                   },
                   {
                     snowflake:"9",
                     roomIndex:14,
-                    name:"Try to unlock the top draw"
+                    name:"Try to unlock the top drawer"
                   },
                   {
                     snowflake:"10",
                     roomIndex:15,
-                    name:"Try to unlock the top draw"
+                    name:"Try to unlock the top drawer"
                   },
                   {
                     snowflake:"11",
                     roomIndex:16,
-                    name:"Try to unlock the top draw"
+                    name:"Try to unlock the top drawer"
                   },
                   {
                     snowflake:"12",
                     roomIndex:17,
-                    name:"Try to unlock the top draw"
+                    name:"Try to unlock the top drawer"
                   },
                   {
                     snowflake:"13",
                     roomIndex:24,
-                    name:"Try to unlock the top draw"
+                    name:"Try to unlock the top drawer"
                   },
                   {
                     snowflake:"14",
                     roomIndex:25,
-                    name:"Try to unlock the top draw"
+                    name:"Try to unlock the top drawer"
                   },
                   {
                     snowflake:"15",
@@ -931,12 +931,12 @@ var rooms = [//All the rooms of the map and their data
                   {
                     snowflake:"16",
                     roomIndex:27,
-                    name:"Try to unlock the top draw"
+                    name:"Try to unlock the top drawer"
                   },
                   {
                     snowflake:"17",
                     roomIndex:28,
-                    name:"Try to unlock the top draw"
+                    name:"Try to unlock the top drawer"
                   }
                 ]
               }
@@ -959,7 +959,7 @@ var rooms = [//All the rooms of the map and their data
   },
   {//Room index: 8
     name:"Doctor's Lounge",
-    image:"doctorsLounge0.png",
+    image:"doctorsLounge0.jpg",
     description:"This room looks like any standard work break room, there's a small kitchen area in one corner, a TV with two sofas in the opposite. Against one wall is a couple of large lockers",
     doors:[
       {
@@ -1025,7 +1025,7 @@ var rooms = [//All the rooms of the map and their data
   },
   {//Room index: 9
     name:"Lift Maintenance",
-    image:"liftMaintenance0.png",
+    image:"liftMaintenance0.jpg",
     description:"This is a very small, dark room. On the left and right walls are lots of controls and dials for the lift - one of them appears to be a wheel to manually move the lift up and down. In front is a cage door padlocked shut that appears to drop right into the lift shaft - currently it's blocked by the lift itself",
     doors:[
       {
@@ -1062,7 +1062,7 @@ var rooms = [//All the rooms of the map and their data
   },
   {//Room index: 10
     name:"Visitor's Waiting Room",
-    image:"waitingRoom0.png",
+    image:"waitingRoom0.jpg",
     description:"This room is mostly empty, there are lots of cheap plastic chairs and there's a table in the middle with magazines on it. In the corner there is an old vending machine with drinks and chocolate bars in it",
     doors:[
       {
