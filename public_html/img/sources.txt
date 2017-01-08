@@ -1,0 +1,4 @@
+hospital.jpg:
+https://upload.wikimedia.org/wikipedia/commons/e/e4/Royal_Liverpool_University_Hospital.jpg
+Free to use with modification.
+
