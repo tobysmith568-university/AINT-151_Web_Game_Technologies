@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="game">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +14,7 @@
       <!--An inventory item-->
       <div id="tmp_inventory"  class="btn-group btn-group-justified" role="group" aria-label="...">
         <div class="btn-group" role="group">
-          <button type="button" title="" class="btn btn-default nohover">Item Name</button>
+          <button type="button" title="" class="btn btn-default inventoryName">Item Name</button>
         </div>
         <div class="btn-group" role="group">
           <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -57,18 +57,18 @@
                 <a class="navbar-brand" href="index.html">My Game</a>
             </div>
             <!--The navbar items-->
-            <div class="collapse navbar-collapse navbar-right" id="navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li><a href="index.html">Home</a></li>
-                    <li class="active"><a href="game.html">Game</a></li>
-                    <li><a href="#">Thing 3</a></li>
+            <div role="navigation" class="collapse navbar-collapse navbar-right" id="navbar-collapse-1" style="margin-top: 5px;">
+                <ul class="nav nav-pills">
+                    <li role="presentation" ><a href="index.html">Home</a></li>
+                    <li role="presentation"  class="active"><a href="game.html">Game</a></li>
+                    <li role="presentation" ><a href="#">Thing 3</a></li>
                 </ul>
             </div>
         </div>
       </nav>
 
       <!--The main content-->
-      <div class="container" style="background-color:white">
+      <div class="container" >
         <div class="row">
           <!--The place for messages to show-->
           <div id="messages" class="col-md-12">
@@ -84,8 +84,8 @@
                   <div class="panel-heading">
                     <h3 class="panel-title" id="roomTitle">Room Stuff</h3>
                   </div>
-                  <div class="panel-body" >
-                    <p id="roomText">This is the room stuff</p>
+                  <div class="panel-body" style="height:330px">
+                    <p id="roomText" style="color: #31708f;font-size: medium;">This is the room stuff</p>
                   </div>
                 </div>
               </div>
@@ -95,8 +95,8 @@
                   <div class="panel-heading">
                     <h3 class="panel-title">Map</h3>
                   </div>
-                  <div class="panel-body">
-                    <p>This is a map</p>
+                  <div class="panel-body" style="height:330px">
+                    <img id="map" class="img-responsive center-block" style="max-width:100%;max-height:100%"/>
                   </div>
                 </div>
               </div>
@@ -128,11 +128,9 @@
           <div class="col-md-3">
             <div class="panel panel-info">
               <div class="panel-heading">
-                <h3 class="panel-title">Your Inventory <small>Hover over an item's name to read it's description.</small></h3>
+                <h3 class="panel-title">Your Inventory</h3>
               </div>
-              <div class="panel-body" id="inventory">
-
-              </div>
+              <div class="panel-body pre-scrollable" id="inventory" style="height: 608px;max-height:608px"/>
             </div>
           </div>
         </div>
