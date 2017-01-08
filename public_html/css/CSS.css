@@ -13,7 +13,7 @@
   background-color: #fff;
   border-color: #cccccc;
   outline: none;
-  box-shadow: none
+  box-shadow: none;
 }
 
 .hidden {
@@ -22,4 +22,16 @@
 
 .clickable {
   cursor:pointer;
+}
+
+body {
+  background:none;
+}
+
+html {
+    background: url('../img/hospital.jpg') no-repeat center center fixed;
+    -webkit-background-size:cover;
+    -moz-background-size:cover;
+    -o-background-size:cover;
+    background-size:cover;
 }
