@@ -5,7 +5,7 @@
   description:"",
   doors:[
     {
-      keys[],
+      keys:[],
       leadsTo:0
     }
   ],
