@@ -131,6 +131,7 @@ function NewGame()
   localStorage.removeItem('rooms');
   localStorage.removeItem('inventory');
   localStorage.removeItem('items');
+  localStorage.removeItem('you');
 
   window.location.replace('game.html');
 }
@@ -339,13 +340,6 @@ function TaskRemoveKey(roomID, taskID, key)
 function RunAction(itemSnowflake, actionSnowflake)
 {
   switch (itemSnowflake) {
-
-case "Template":
-  switch (actionSnowflake) {
-    case 0:
-      break;
-  }
-  break;//Template
     case "001":
         switch (actionSnowflake) {
           case 0:
@@ -371,7 +365,7 @@ case "Template":
       switch (actionSnowflake) {
         case 0:
           AddMessage("That was silly...", "Nothing happened because of the power cut.");
-        break;
+          break;
       }
       break;//002
     case "003":
@@ -545,9 +539,7 @@ case "Template":
           break;
         case 18:
           AddMessage("Failure!", "That key does not unlock the second locker.");
-          break;
-
-          break;
+          break
       }
       break;//005
     case "006":
@@ -561,28 +553,57 @@ case "Template":
     case "007":
       switch (actionSnowflake) {
         case 0:
-          alert('NEEDS DOING.');
+          var r = confirm("Are you sure you want to assume this is you?\nThis cannot be reversed.");
+          if (r == true) {
+            localStorage.you = JSON.stringify({name:"Toby Smith", image:"img/avatars/avatar0.jpg", age:"19", gender:"Male", height:"190cm", set:true});
+            RemoveAction(0, "007");
+            RemoveAction(0, "008");
+            RemoveAction(0, "009");
+            RemoveAction(0, "010");
+            AddMessage("Assume this is you:", "You are now the person in this patient file. You can view your profile <a href='profile.html'>here<a>.");
+          }
           break;
       }
       break;//007
     case "008":
       switch (actionSnowflake) {
         case 0:
-          alert('NEEDS DOING.');
+          var r = confirm("Are you sure you want to assume this is you?\nThis cannot be reversed.");
+          if (r == true) {
+            localStorage.you = JSON.stringify({name:"Jess Jones", image:"img/avatars/avatar2.jpg", age:"24", gender:"Female", height:"165cm", set:true});
+            RemoveAction(0, "007");
+            RemoveAction(0, "008");
+            RemoveAction(0, "009");
+            RemoveAction(0, "010");
+          }
           break;
       }
       break;//008
     case "009":
       switch (actionSnowflake) {
         case 0:
-          alert('NEEDS DOING.');
+          var r = confirm("Are you sure you want to assume this is you?\nThis cannot be reversed.");
+          if (r == true) {
+            localStorage.you = JSON.stringify({name:"Sam Bill", image:"img/avatars/avatar1.jpg", age:"36", gender:"Male", height:"184cm", set:true});
+            RemoveAction(0, "007");
+            RemoveAction(0, "008");
+            RemoveAction(0, "009");
+            RemoveAction(0, "010");
+          }
           break;
       }
       break;//009
     case "010":
       switch (actionSnowflake) {
         case 0:
-          alert('NEEDS DOING.');
+          var r = confirm("Are you sure you want to assume this is you?\nThis cannot be reversed.");
+          if (r == true) {
+            localStorage.you = JSON.stringify({name:"Harriet Walker", image:"img/avatars/avatar3.jpg", age:"48", gender:"Female", height:"159cm", set:true});
+            RemoveAction(0, "007");
+            RemoveAction(0, "008");
+            RemoveAction(0, "009");
+            RemoveAction(0, "010");
+          }
           break;
       }
       break;//010
