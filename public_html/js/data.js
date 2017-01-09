@@ -1728,7 +1728,7 @@ var items = [
   {//007
     snowflake:"007",
     name:"Patient file",
-    description:"The patient in this file is called [name]. They're [age] years old and are a [height] tall [gender]",
+    description:"The patient in this file is called Toby Smith. They're 19 years old and are a 190cm tall male.",
     actions:[
       {
         snowflake:"0",
@@ -1740,7 +1740,7 @@ var items = [
   {//008
     snowflake:"008",
     name:"Patient file",
-    description:"The patient in this file is called [name]. They're [age] years old and are a [height] tall [gender]",
+    description:"The patient in this file is called Jess Jones. They're 24 years old and are a 165cm tall female.",
     actions:[
       {
         snowflake:"0",
@@ -1752,7 +1752,7 @@ var items = [
   {//009
     snowflake:"009",
     name:"Patient file",
-    description:"The patient in this file is called [name]. They're [age] years old and are a [height] tall [gender]",
+    description:"The patient in this file is called Sam Bill. They're 36 years old and are a 184cm tall male.",
     actions:[
       {
         snowflake:"0",
@@ -1764,7 +1764,7 @@ var items = [
   {//010
     snowflake:"010",
     name:"Patient file",
-    description:"The patient in this file is called [name]. They're [age] years old and are a [height] tall [gender]",
+    description:"The patient in this file is called Harriet Walker They're 48 years old and are a 159 tall female.",
     actions:[
       {
         snowflake:"0",
