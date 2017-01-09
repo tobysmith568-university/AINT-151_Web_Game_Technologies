@@ -46,3 +46,8 @@ body {
 hr {
   border-color: #d9edf7;
 }
+
+.profile {
+  margin-top: 10px;
+  background-color: lightgray;
+}
