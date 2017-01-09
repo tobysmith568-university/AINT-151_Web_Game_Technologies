@@ -11,8 +11,14 @@ function OnLoad()
     }
     //If no array of known rooms exists:
     if (localStorage.knownRooms === undefined){
-      var theArray = [2, 3, 4, 5, 6, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 22, 24, 25, 26, 27, 28, 30, 32, 33];
+      var theArray = [2, 3, 4, 5, 6, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 21, 22, 24, 25, 26, 27, 28, 30, 31, 32, 33];
       localStorage.knownRooms = JSON.stringify(theArray);
+      offerNewGame = false;
+    }
+    //If no array of hidden tasks exists:
+    if (localStorage.hiddenTasks === undefined){
+      var theArray = [{room:9,index:1},{room:10,index:1},{room:10,index:2},{room:10,index:3},{room:10,index:4},{room:10,index:5},{room:21,index:1}];
+      localStorage.hiddenTasks = JSON.stringify(theArray);
       offerNewGame = false;
     }
     //If no array of known inventory items exists:
@@ -60,6 +66,7 @@ function SelectRoom(roomIndex, clearMessage)
   var varRooms = JSON.parse(localStorage.rooms);
   var varKnownRooms = JSON.parse(localStorage.knownRooms);
   var varRoomNumber = JSON.parse(localStorage.roomNumber);
+  var varHiddenTasks = JSON.parse(localStorage.hiddenTasks);
 
   //Get the current room's wallText
   var wallText = varRooms[roomIndex].wallText;
@@ -105,6 +112,14 @@ function SelectRoom(roomIndex, clearMessage)
       theClass = theClass + ' disabled';
     }
 
+    for (var ii = 0; ii < varHiddenTasks.length; ii++) {
+      if (varHiddenTasks[ii].room == roomIndex) {
+        if (varHiddenTasks[ii].index == i) {
+          theClass = theClass + ' hidden';
+        }
+      }
+    }
+
     theValue = varRooms[roomIndex].tasks[i].name;
 
 		document.getElementById('roomTasks').innerHTML += '<a type="button" class="' + theClass + '" onClick="RunTask(' + i + ')">' + theValue + '</a>';
@@ -118,7 +133,6 @@ function SelectRoom(roomIndex, clearMessage)
     varKnownRooms.push(roomIndex);
   localStorage.roomNumber = JSON.stringify(roomIndex);
   localStorage.knownRooms = JSON.stringify(varKnownRooms);
-  ///////////localStorage.rooms = JSON.stringify(varRooms);
 
   ShowInventory();
 }
@@ -132,6 +146,7 @@ function NewGame()
   localStorage.removeItem('inventory');
   localStorage.removeItem('items');
   localStorage.removeItem('you');
+  localStorage.removeItem('hiddenTasks');
 
   window.location.replace('game.html');
 }
@@ -258,7 +273,7 @@ function RunTask(taskIndex)
       //Calcuate if the result happens, if it does: add the item and message
       if (chance <= varRooms[varRoomNumber].tasks[taskIndex].results[i].chance){
         AddItem(varRooms[varRoomNumber].tasks[taskIndex].results[i].item);
-        lines += '\n' + varRooms[varRoomNumber].tasks[taskIndex].results[i].message;
+        lines += '<br/>' + varRooms[varRoomNumber].tasks[taskIndex].results[i].message;
 
         //If the result can only happen once: remove it from the task
         if (varRooms[varRoomNumber].tasks[taskIndex].results[i].isRepeatable == false) {
@@ -269,7 +284,11 @@ function RunTask(taskIndex)
       }
     }
     //If there is no result: add a blank result
-    if (lines === '') lines = 'You find nothing.';
+    if (lines === '') {
+      lines = 'You find nothing.';
+    } else {
+      lines = lines.substring(5);
+    }
     //Show the message with either the results or the blank one
     AddMessage(varRooms[varRoomNumber].tasks[taskIndex].name + '...', lines);
 
@@ -279,24 +298,33 @@ function RunTask(taskIndex)
     Saying a message
     Unlocking another room or task
     */
+    var clearMessage = false;
     switch (varRoomNumber)
     {
-      case 0:
+      case 9:
         switch (taskIndex)
         {
           case 0:
-
+            AddTask(9, 1);
+            HideTask(9, 0);
             break;
           case 1:
-            /*Do stuff*/
-            break;
-          case 2:
-            /*Do stuff*/
+            varRoomNumber = 33;
+            clearMessage = true;
             break;
         }
         break;
-      case 1:
-        /*Switch for tasks*/
+      case 10:
+        switch (taskIndex) {
+          case 0:
+          case 1:
+          case 2:
+          case 3:
+            AddTask(10, taskIndex + 1);
+            varRooms = JSON.parse(localStorage.rooms);
+            HideTask(10, taskIndex);
+            break;
+        }
         break;
       case 2:
         /*Switch for tasks*/
@@ -307,14 +335,39 @@ function RunTask(taskIndex)
     localStorage.roomNumber = JSON.stringify(varRoomNumber);
     localStorage.rooms = JSON.stringify(varRooms);
 
-    SelectRoom(varRoomNumber);
+    SelectRoom(varRoomNumber, clearMessage);
 }
 
-/*Method to remove a task from a room*/
-/*CURRENTLY UNUSED*/
-function RemoveTask(roomIndex, taskIndex)
+/*Method to add a task from a room*/
+function AddTask(roomIndex, taskIndex)
 {
-  //
+  //Get the data needed
+  var varHiddenTasks = JSON.parse(localStorage.hiddenTasks);
+
+  //Remove the task
+  for (var i = 0; i < varHiddenTasks.length; i++) {
+    if (varHiddenTasks[i].room == roomIndex) {
+      if (varHiddenTasks[i].index = taskIndex) {
+        varHiddenTasks.splice(i, 1);
+      }
+    }
+  }
+
+  //Save the changed data
+  localStorage.hiddenTasks = JSON.stringify(varHiddenTasks);
+}
+
+/*Method to hide a task from a room*/
+function HideTask(roomIndex, taskIndex)
+{
+  //Get the data needed
+  var varHiddenTasks = JSON.parse(localStorage.hiddenTasks);
+
+  //Hide the task
+  varHiddenTasks.push({room:roomIndex, index:taskIndex});
+
+  //Save the changed data
+  localStorage.hiddenTasks = JSON.stringify(varHiddenTasks);
 }
 
 /*Method to remove a key from an task*/
@@ -760,7 +813,8 @@ function RunAction(itemSnowflake, actionSnowflake)
       switch (actionSnowflake) {
         case 0:
           AddMessage("Success!", "The lock breaks off and the door swings open. Now that you can get close you see there is a ladder doing both up and down the lift shaft.");
-          alert('NEEDS DOING');
+          TaskRemoveKey(9, 1, "020");
+          RemoveAction(0, "020");
           break;
       }
       break;//020
