@@ -5,3 +5,14 @@ Free to use with modification.
 ward.jpg:
 https://upload.wikimedia.org/wikipedia/commons/a/a6/Plattsburgh_Air_Force_Base_Hospital.jpg
 Free to use with modification.
+
+avatar0.jpg:
+avatar1.jpg:
+avatar2.jpg:
+avatar3.jpg:
+http://avatarmaker.com
+Free to use.
+
+favicon.ico:
+http://icons8.com
+Free to use with link back to site.
