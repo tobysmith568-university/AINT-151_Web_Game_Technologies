@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html class='index'>
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
-    <link rel="stylesheet" href="css/CSS.css" />
-    <title>My web Game</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/CSS.css"/>
+    <link rel="icon" type="icon" href="img/favicon.ico"/>
+    <title>Escape the Hospital!</title>
   </head>
 
   <body>
@@ -21,14 +22,14 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="index.html">My Game</a>
+                    <a class="navbar-brand" href="index.html">Escape the Hospital!</a>
                 </div>
                 <!--The navbar items-->
                 <div role="navigation" class="collapse navbar-collapse navbar-right" id="navbar-collapse-1" style="margin-top: 5px;">
                     <ul class="nav nav-pills">
                         <li role="presentation" class="active"><a href="index.html">Home</a></li>
-                        <li role="presentation" ><a href="game.html">Game</a></li>
-                        <li role="presentation" ><a href="#">Thing 3</a></li>
+                        <li role="presentation"><a href="game.html">Game</a></li>
+                        <li role="presentation"><a href="profile.html">You</a></li>
                     </ul>
                 </div>
             </div>
@@ -37,8 +38,11 @@
     <!--The jumbotron-->
     <div class="container">
         <div class="jumbotron">
-            <h2>Welcome to my game!</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse feugiat nibh ac mauris pretium, vel commodo nisl auctor. Duis eu sem et lorem placerat convallis vel vel sem. Praesent sed nisi id nibh rutrum placerat sit amet et nisl. Nunc at pretium metus. Vestibulum eget semper quam. Aenean ac sodales nulla.</p>
+            <h2>Welcome to: Escape the Hospital!</h2>
+            <p>"You wake up all alone in a silent hospital room...</p>
+            <p>After 15 minutes there is still no sign of life so you decide to get up and wander around. You don't remember why you're at the hospital and you can't see any sign of injury..."</p>
+            <hr />
+            <p>In this game you must navigate between rooms in order to escape form the hospital. Complete tasks to find items and use those items in specific rooms to gain access to new items and tasks which can help you find your way out.</p>
             <a class="btn btn-primary btn-lg" onClick="NewGame()" role="button">Start a new game!</a>
         </div>
     </div>
@@ -79,9 +83,5 @@
 
   <!--The footer-->
   <footer>
-      <div class="container">
-          <hr/>
-          <p>This is the footer</p>
-      </div>
   </footer>
 </html>
