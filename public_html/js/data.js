@@ -524,11 +524,11 @@ var rooms = [//All the rooms of the map and their data
     ],
     tasks:[
       {
-        name:"Move the lift up a floor",
+        name:"Move the lift up",
         keys:[],
         results:[
           {
-            message:"",
+            message:"The lift is now in the space above your floor and you can climb down.",
             chance:100,
             isRepeatable:false,
             item:null
@@ -536,19 +536,22 @@ var rooms = [//All the rooms of the map and their data
         ]
       },
       {
-        name:"Move the lift down a floor",
-        keys:[],
+        name:"Climb into the lift shaft",
+        keys:["020"],
         results:[
           {
             message:"",
             chance:100,
-            isRepeatable:false,
+            isRepeatable:true,
             item:null
           }
         ]
       }
+
     ],
-    wallText:""
+    wallText:"",
+    liftUp:false,
+    cageOpen:false
   },
   {//Room index: 10
     name:"Visitor's Waiting Room",
@@ -562,7 +565,7 @@ var rooms = [//All the rooms of the map and their data
     ],
     tasks:[
       {
-        name:"Read a magazine",
+        name:"Read a magazine1",
         keys:[],
         results:[
           {
@@ -571,27 +574,51 @@ var rooms = [//All the rooms of the map and their data
             isRepeatable:false,
             item:null
           },
+        ]
+      },
+      {
+        name:"Read a magazine2",
+        keys:[],
+        results:[
           {
             message:"Did you know NEEDS DOING",
-            chance:20,
+            chance:100,
             isRepeatable:false,
             item:null
-          },
+          }
+        ]
+      },
+      {
+        name:"Read a magazine3",
+        keys:[],
+        results:[
           {
             message:"Did you know NEEDS DOING",
-            chance:20,
+            chance:100,
             isRepeatable:false,
             item:null
-          },
+          }
+        ]
+      },
+      {
+        name:"Read a magazine4",
+        keys:[],
+        results:[
           {
             message:"Did you know NEEDS DOING",
-            chance:20,
+            chance:100,
             isRepeatable:false,
             item:null
-          },
+          }
+        ]
+      },
+      {
+        name:"Read a magazine5",
+        keys:[],
+        results:[
           {
             message:"Did you know NEEDS DOING",
-            chance:20,
+            chance:100,
             isRepeatable:false,
             item:null
           }
@@ -1065,6 +1092,18 @@ var rooms = [//All the rooms of the map and their data
             item:"020"
           }
         ]
+      },
+      {
+        name:"Take a tool",
+        keys:[],
+        results:[
+          {
+            message:"You pick up a screwdriver",
+            chance:100,
+            isRepeatable:false,
+            item:"021"
+          }
+        ]
       }
     ],
     wallText:""
@@ -1087,12 +1126,12 @@ var rooms = [//All the rooms of the map and their data
         leadsTo:30
       },
       {
-        keys:[],
+        keys:[000],
         leadsTo:31
       },
       {
         keys:[],
-        leadsTo:32
+        leadsTo:33
       }
     ],
     tasks:[
@@ -1422,7 +1461,7 @@ var rooms = [//All the rooms of the map and their data
   },
   {//Room index: 30
     name:"Male Toilets",
-    image:"maleToilet0.jpg",
+    image:"maleToilets0.jpg",
     description:"This looks like a standard toilet. There are 3 stalls, 4 urinals, and 3 sinks. One of the taps for the centre sink is running - it's lucky there's no plug for that sink",
     doors:[
       {
@@ -1469,6 +1508,27 @@ var rooms = [//All the rooms of the map and their data
       },
       {
         keys:["000"],
+        leadsTo:22
+      }
+    ],
+    tasks:[],
+    wallText:""
+  },
+  {//Room index: 33
+    name:"Lift Shaft",
+    image:"lift0.jpg",
+    description:"There's nothing here apart from a couple of emergency lights and a ladder to get up and down with. There's no way you can prise open the doors on the first floor while holding on to the ladder - I guess you'll still need to use the actual lift to get to that floor.",
+    doors:[
+      {
+        keys:[],
+        leadsTo:0
+      },
+      {
+        keys:["000"],
+        leadsTo:11
+      },
+      {
+        keys:[],
         leadsTo:22
       }
     ],
@@ -1903,11 +1963,6 @@ var items = [
         snowflake:"0",
         roomIndex:-1,
         name:"Read the code"
-      },
-      {
-        snowflake:"1",
-        roomIndex:0,
-        name:"Enter the code into the safe"
       }
     ]
   },
@@ -2103,6 +2158,48 @@ var items = [
     snowflake:"025",
     name:"Bandage",
     description:"This looks like a standard bandage. It's long, white - what else do you need to know?",
+    actions:[
+      {
+        snowflake:"0",
+        roomIndex:-1,
+        name:"Put in glass bottle"
+      }
+    ]
+  },
+  {//026
+    snowflake:"026",
+    name:"Methylated Spirit",
+    description:"This is rather strong stuff - becareful with it",
+    actions:[
+      {
+        snowflake:"0",
+        roomIndex:-1,
+        name:"Put in glass bottle"
+      }
+    ]
+  },
+  {//027
+    snowflake:"027",
+    name:"Book of matches",
+    description:"These appear to be the old fashioned strike-anywhere matches - but there's only 3 left",
+    actions:[
+      {
+        snowflake:"0",
+        roomIndex:22,
+        name:"Light Molotov cocktail and throw at ambulance"
+      }
+    ]
+  },
+  {//028
+    snowflake:"028",
+    name:"Glass bottle",
+    description:"This is only of the iconic glass bottles Coke comes in",
+    actions:[]
+  },
+  {//029
+    snowflake:"029",
+    name:"Glass bottle",
+    description:"This is only of the iconic glass bottles Coke comes in",
     actions:[]
   }
 ];
