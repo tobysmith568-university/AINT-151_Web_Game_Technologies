@@ -440,10 +440,10 @@ var rooms = [//All the rooms of the map and their data
         keys:[],
         results:[
           {
-            message:"There's nothing apart from an empty can of coke which you decide to leave there",
+            message:"There's nothing apart from an empty bottle of Coke",
             chance:100,
-            isRepeatable:true,
-            item:null
+            isRepeatable:false,
+            item:"028"
           }
         ]
       }
@@ -502,10 +502,10 @@ var rooms = [//All the rooms of the map and their data
         keys:["016"],
         results:[
           {
-            message:"NEEDS DOING",
+            message:"There's nothing in there of any use apart from a box of matches… They might come in handy",
             chance:100,
-            isRepeatable:true,
-            item:"0000"
+            isRepeatable:false,
+            item:"027"
           }
         ]
       }
@@ -565,23 +565,23 @@ var rooms = [//All the rooms of the map and their data
     ],
     tasks:[
       {
-        name:"Read a magazine1",
+        name:"Read a magazine",
         keys:[],
         results:[
           {
-            message:"Did you know NEEDS DOING",
-            chance:20,
+            message:"<a target='_blank' href='http://www.hellomagazine.com/celebrities/'>Celebrity News<a>",
+            chance:100,
             isRepeatable:false,
             item:null
           },
         ]
       },
       {
-        name:"Read a magazine2",
+        name:"Read a magazine",
         keys:[],
         results:[
           {
-            message:"Did you know NEEDS DOING",
+            message:"<a target='_blank' href='http://sport-magazine.co.uk'>Sports News<a>",
             chance:100,
             isRepeatable:false,
             item:null
@@ -589,11 +589,11 @@ var rooms = [//All the rooms of the map and their data
         ]
       },
       {
-        name:"Read a magazine3",
+        name:"Read a magazine",
         keys:[],
         results:[
           {
-            message:"Did you know NEEDS DOING",
+            message:"<a target='_blank' href='https://www.newscientist.com'>Science News<a>",
             chance:100,
             isRepeatable:false,
             item:null
@@ -601,11 +601,11 @@ var rooms = [//All the rooms of the map and their data
         ]
       },
       {
-        name:"Read a magazine4",
+        name:"Read a magazine",
         keys:[],
         results:[
           {
-            message:"Did you know NEEDS DOING",
+            message:"<a target='_blank' href='http://www.parenting.com'>Parenting Advice<a>",
             chance:100,
             isRepeatable:false,
             item:null
@@ -613,11 +613,11 @@ var rooms = [//All the rooms of the map and their data
         ]
       },
       {
-        name:"Read a magazine5",
+        name:"Read a magazine",
         keys:[],
         results:[
           {
-            message:"Did you know NEEDS DOING",
+            message:"<a target='_blank' href='http://www.businessmag.co.uk'>Business News<a>",
             chance:100,
             isRepeatable:false,
             item:null
@@ -675,9 +675,9 @@ var rooms = [//All the rooms of the map and their data
         keys:[],
         results:[
           {
-            message:"You find a small safe",
+            message:"You find nothing",
             chance:100,
-            isRepeatable:false,
+            isRepeatable:true,
             item:null
           }
         ]
@@ -1140,9 +1140,9 @@ var rooms = [//All the rooms of the map and their data
         keys:[],
         results:[
           {
-            message:"You find a small safe",
+            message:"You find nothing",
             chance:100,
-            isRepeatable:false,
+            isRepeatable:true,
             item:null
           }
         ]
@@ -1443,20 +1443,7 @@ var rooms = [//All the rooms of the map and their data
         leadsTo:22
       }
     ],
-    tasks:[
-      {
-        name:"Use the defibrillators on yourself",
-        keys:[],
-        results:[
-          {
-            message:"",
-            chance:100,
-            isRepeatable:false,
-            item:null
-          }
-        ]
-      }
-    ],
+    tasks:[],
     wallText:""
   },
   {//Room index: 30
@@ -1469,7 +1456,20 @@ var rooms = [//All the rooms of the map and their data
         leadsTo:22
       }
     ],
-    tasks:[],
+    tasks:[
+      {
+        name:"Pick up a cleaning product",
+        keys:[],
+        results:[
+          {
+            message:"You find and keep methylated spirit… Be careful with that!",
+            chance:100,
+            isRepeatable:false,
+            item:"026"
+          }
+        ]
+      }
+    ],
     wallText:""
   },
   {//Room index: 31
@@ -1788,7 +1788,7 @@ var items = [
   {//007
     snowflake:"007",
     name:"Patient file",
-    description:"The patient in this file is called Toby Smith. They're 19 years old and are a 190cm tall male.",
+    description:"The patient in this file is called Toby Smith. They're 19 years old and are a 195cm tall male.",
     actions:[
       {
         snowflake:"0",
@@ -1824,7 +1824,7 @@ var items = [
   {//010
     snowflake:"010",
     name:"Patient file",
-    description:"The patient in this file is called Harriet Walker They're 48 years old and are a 159 tall female.",
+    description:"The patient in this file is called Harriet Walker They're 48 years old and are a 159cm tall female.",
     actions:[
       {
         snowflake:"0",
@@ -2193,13 +2193,15 @@ var items = [
   {//028
     snowflake:"028",
     name:"Glass bottle",
-    description:"This is only of the iconic glass bottles Coke comes in",
-    actions:[]
+    description:"This is one of the iconic glass bottles Coke comes in",
+    actions:[],
+    bandages:0,
+    spirit:0
   },
   {//029
     snowflake:"029",
-    name:"Glass bottle",
-    description:"This is only of the iconic glass bottles Coke comes in",
+    name:"Molotov Cocktail",
+    description:"Just light it and make sure you throw it far enough!",
     actions:[]
   }
 ];
