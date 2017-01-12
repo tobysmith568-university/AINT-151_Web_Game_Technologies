@@ -8,7 +8,7 @@ This Bitbucket URL will also redirect there: http://tobysmith568.bitbucket.io
 This is a text-based Javascript game in which you have to try and escape a hospital.  
 This was made for the module 'AINT151' in the Computing and Games Development course at Plymouth University.  
 Owned by:  
-Toby Smith
+Toby Smith  
 Student Card Number: 0022019488  
   
 Version 1.0.0.0  
