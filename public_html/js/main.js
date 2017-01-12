@@ -17,7 +17,7 @@ function OnLoad()
     }
     //If no array of hidden tasks exists:
     if (localStorage.hiddenTasks === undefined){
-      var theArray = [{room:9,index:1},{room:10,index:1},{room:10,index:2},{room:10,index:3},{room:10,index:4},{room:10,index:5},{room:21,index:1}];
+      var theArray = [{room:9,index:1},{room:21,index:1}];
       localStorage.hiddenTasks = JSON.stringify(theArray);
       offerNewGame = false;
     }
@@ -129,7 +129,7 @@ function SelectRoom(roomIndex, clearMessage)
   document.getElementById('map').src = 'img/rooms/' + varRooms[roomIndex].image;
 
   //Save the current data
-  if (!contains(varKnownRooms, roomIndex))
+  if (!ArrayContains(varKnownRooms, roomIndex))
     varKnownRooms.push(roomIndex);
   localStorage.roomNumber = JSON.stringify(roomIndex);
   localStorage.knownRooms = JSON.stringify(varKnownRooms);
@@ -163,7 +163,7 @@ function ShowInventory()
   document.getElementById('inventory').innerHTML = '';
   for (var i = 1; i < varInventory.length; i++) {
     var node = document.getElementById('tmp_inventory').cloneNode(true);
-    node.id = 'item_' + varInventory[i].snowflake;
+    node.id = '';
     node.getElementsByClassName('inventoryName')[0].innerHTML = varInventory[i].name;
     node.getElementsByClassName('inventoryName')[0].title = varInventory[i].description;
     node.getElementsByClassName('inventoryName')[0].setAttribute('onclick','AddMessage("' + varInventory[i].name + ':", "' + varInventory[i].description + '")');
@@ -176,6 +176,53 @@ function ShowInventory()
         node.getElementsByClassName('dropdown-menu')[0].appendChild(action);
       }
     }
+
+    //Special code for methylated spirit
+    if (varInventory[i].snowflake == "026") {
+      var containsBottle = false;
+      for (var ii = 0; ii < varInventory.length; ii++) {
+        if (varInventory[ii].snowflake == "028") {
+          containsBottle = true;
+          break;
+        }
+      }
+      if (!containsBottle) {
+        while (node.getElementsByClassName('dropdown-menu')[0].firstChild) {
+          node.getElementsByClassName('dropdown-menu')[0].removeChild(node.getElementsByClassName('dropdown-menu')[0].firstChild);
+        }
+      }
+    }
+    //Special code for bandages
+    if (varInventory[i].snowflake == "025") {
+      var containsBottle = false;
+      for (var ii = 0; ii < varInventory.length; ii++) {
+        if (varInventory[ii].snowflake == "028") {
+          containsBottle = true;
+          break;
+        }
+      }
+      if (!containsBottle) {
+        while (node.getElementsByClassName('dropdown-menu')[0].firstChild) {
+          node.getElementsByClassName('dropdown-menu')[0].removeChild(node.getElementsByClassName('dropdown-menu')[0].firstChild);
+        }
+      }
+    }
+    //Special code for matches
+    if (varInventory[i].snowflake == "027") {
+      var containsCocktail = false;
+      for (var ii = 0; ii < varInventory.length; ii++) {
+        if (varInventory[ii].snowflake == "029") {
+          containsCocktail = true;
+          break;
+        }
+      }
+      if (!containsCocktail) {
+        while (node.getElementsByClassName('dropdown-menu')[0].firstChild) {
+          node.getElementsByClassName('dropdown-menu')[0].removeChild(node.getElementsByClassName('dropdown-menu')[0].firstChild);
+        }
+      }
+    }
+
     if (node.getElementsByClassName('dropdown-menu')[0].children.length == 0) {
       var action = document.getElementById('tmp_action').cloneNode(true);
       action.ID = '';
@@ -292,6 +339,10 @@ function RunTask(taskIndex)
     //Show the message with either the results or the blank one
     AddMessage(varRooms[varRoomNumber].tasks[taskIndex].name + '...', lines);
 
+    //Save the current data
+    localStorage.roomNumber = JSON.stringify(varRoomNumber);
+    localStorage.rooms = JSON.stringify(varRooms);
+
     //Do any followup actions for the task
     /*Things here could be like:
     Removing the task from the room
@@ -320,20 +371,16 @@ function RunTask(taskIndex)
           case 1:
           case 2:
           case 3:
-            AddTask(10, taskIndex + 1);
-            varRooms = JSON.parse(localStorage.rooms);
+          case 4:
             HideTask(10, taskIndex);
             break;
         }
         break;
-      case 2:
-        /*Switch for tasks*/
+      case 31:
+        window.location = "profile.html";
         break;
     }
 
-    //Save the current data
-    localStorage.roomNumber = JSON.stringify(varRoomNumber);
-    localStorage.rooms = JSON.stringify(varRooms);
 
     SelectRoom(varRoomNumber, clearMessage);
 }
@@ -628,6 +675,7 @@ function RunAction(itemSnowflake, actionSnowflake)
             RemoveAction(0, "008");
             RemoveAction(0, "009");
             RemoveAction(0, "010");
+            AddMessage("Assume this is you:", "You are now the person in this patient file. You can view your profile <a href='profile.html'>here<a>.");
           }
           break;
       }
@@ -642,6 +690,7 @@ function RunAction(itemSnowflake, actionSnowflake)
             RemoveAction(0, "008");
             RemoveAction(0, "009");
             RemoveAction(0, "010");
+            AddMessage("Assume this is you:", "You are now the person in this patient file. You can view your profile <a href='profile.html'>here<a>.");
           }
           break;
       }
@@ -656,6 +705,7 @@ function RunAction(itemSnowflake, actionSnowflake)
             RemoveAction(0, "008");
             RemoveAction(0, "009");
             RemoveAction(0, "010");
+            AddMessage("Assume this is you:", "You are now the person in this patient file. You can view your profile <a href='profile.html'>here<a>.");
           }
           break;
       }
@@ -721,15 +771,6 @@ function RunAction(itemSnowflake, actionSnowflake)
       switch (actionSnowflake) {
         case 0:
           alert('The code is: 4582');
-          break;
-        case 1:
-          alert('NEEDS DOING');
-          break;
-        case 2:
-          alert('NEEDS DOING');
-          break;
-        case 3:
-          alert('NEEDS DOING');
           break;
       }
       break;//014
@@ -868,7 +909,74 @@ function RunAction(itemSnowflake, actionSnowflake)
           break;
       }
       break;//024
-    //Nothing for "025"
+    case "025":
+      switch (actionSnowflake) {
+        case 0:
+          //Add the bandage to the bottle
+          RemoveItem("025");
+
+          //Get the needed data
+          var varInventory = JSON.parse(localStorage.inventory);
+          for (var i = 0; i < varInventory.length; i++) {
+            if (varInventory[i].snowflake == "028") {
+              varInventory[i].bandages++;
+
+              //Save the changed data
+              localStorage.inventory = JSON.stringify(varInventory);
+
+              //if the cocktail is ready: add it
+              if (varInventory[i].bandages == 6 && varInventory[i].spirit == 1) {
+                RemoveItem("028");
+                AddItem("029");
+              }
+            }
+          }
+          break;
+      }
+      break;//025
+    case "026":
+      switch (actionSnowflake) {
+        case 0:
+          //Add the spirit to the bottle
+          RemoveItem("026");
+
+          //Get the needed data
+          var varInventory = JSON.parse(localStorage.inventory);
+          for (var i = 0; i < varInventory.length; i++) {
+            if (varInventory[i].snowflake == "028") {
+              varInventory[i].spirit++;
+
+              //Save the changed data
+              localStorage.inventory = JSON.stringify(varInventory);
+
+              //if the cocktail is ready: add it
+              if (varInventory[i].bandages == 6 && varInventory[i].spirit == 1) {
+                RemoveItem("028");
+                AddItem("029");
+              }
+            }
+          }
+          break;
+      }
+      break;//026
+    case "027":
+      switch (actionSnowflake) {
+        case 0:
+          RemoveItem("029");
+
+          //Get the needed information
+          var varRooms = JSON.parse(localStorage.rooms);
+
+          //Change the Reception 0 description
+          varRooms[22].description = "This is a reception area for the ground floor of the hospital, it also looks like the main entrance. There isn't much in the room apart from a few chairs and a desk. At one end of the room, where other floors only had windows, there are some double electric doors leading outside. The ambulance that was blocking the doors has now  moved far enough away from the doors for you to leave!";
+
+          //Save the changed data
+          localStorage.rooms = JSON.stringify(varRooms);
+
+          DoorRemoveKey(22, 3, "000");
+          break;
+      }
+      break;//027
   }
 
   SelectRoom(JSON.parse(localStorage.roomNumber));
@@ -898,14 +1006,9 @@ function RemoveAction(actionID, snowflake)
   localStorage.items = JSON.stringify(varItems);
 }
 
-
-
-
-
-
 /*Method to detect if an array contains an object.
 I'm using this rather than 'Array.indexOf' for compatibility reasons*/
-function contains(a, obj)
+function ArrayContains(a, obj)
 {
     for (var i = 0; i < a.length; i++) {
         if (a[i] == obj) {
