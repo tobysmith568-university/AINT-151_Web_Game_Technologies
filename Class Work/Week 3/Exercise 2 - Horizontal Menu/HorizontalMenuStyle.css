@@ -1,0 +1,20 @@
+#menu {
+  display: inline;
+}
+
+li {
+  display: inline;
+  background-color: lightblue;
+  padding: 10px;
+  font-un
+}
+li:hover {
+  background-color: darkblue;
+  color: white;
+}
+a {
+  text-decoration: none;
+}
+a:visited:hover {
+  color: white;
+}

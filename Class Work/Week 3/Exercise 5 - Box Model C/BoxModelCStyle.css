@@ -1,0 +1,35 @@
+div {
+  background-color: grey;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.clear {
+  clear: both;
+}
+
+#container {
+  background-color: white;
+}
+
+#header {
+  height: 70px;
+  width: 900px;
+  margin-bottom: 10px;
+  line-height: 70px;
+}
+
+#footer {
+  height: 30px;
+  width: 900px;
+  line-height: 30px;
+}
+
+.box {
+  height: 81px;
+  width: 81px;
+  float: left;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  line-height: 81px;  
+}

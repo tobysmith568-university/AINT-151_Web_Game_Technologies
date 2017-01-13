@@ -1,0 +1,50 @@
+div {
+  background-color: grey;
+  text-align: center;
+  vertical-align: middle;
+}
+
+#container {
+  background-color: white;
+}
+
+.clear {
+  clear: both;
+}
+
+#header {
+  height: 70px;
+  width: 900px;
+  margin-bottom: 10px;
+  line-height: 70px;
+}
+
+#leftmenu {
+  height: 500px;
+  width: 245px;
+  margin-right: 10px;
+  float: left;
+  line-height: 500px;
+}
+
+#maincontent {
+  height: 500px;
+  width: 390px;
+  float: left;
+  line-height: 500px;
+}
+
+#rightmenu {
+  height: 500px;
+  width: 245px;
+  margin-left: 10px;
+  float: left;
+  line-height: 500px;
+}
+
+#footer {
+  height: 30px;
+  width: 900px;
+  margin-top: 10px;
+  line-height: 30px;
+}

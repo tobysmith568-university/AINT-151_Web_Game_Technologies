@@ -1,0 +1,32 @@
+div {
+  background-color: grey;
+  text-align: center;
+  vertical-align: middle;
+}
+
+#container {
+  background-color: white;
+  width: 900px;
+  margin: 0 auto;
+}
+
+#header {
+  height: 70px;
+  width: 900px;
+  margin-bottom: 10px;
+  line-height: 70px;
+}
+
+.leftitem {
+  height: 100px;
+  width: 600px;
+  margin-bottom: 10px;
+  line-height: 100px;
+}
+
+#rightmenu {
+  height: 430px;
+  width: 290px;
+  float: right;
+  line-height: 430px;
+}

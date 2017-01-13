@@ -1,0 +1,3 @@
+.box{background-color: blue; width: 100px; height: 100px}
+.para{color: green; width: 100px; border width: 3px; border-color: orange; border-style: dashed}
+.backgroundImage{width: 150px; height: 225px; background-image: url("img/warlock.jpg");}

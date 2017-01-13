@@ -1,0 +1,5 @@
+a:hover{color: orange;}
+li>a:hover{text-decoration: none; color: red;}
+p:first-of-type{display: none;}
+div>span{background-color: grey;}
+div>p:hover{display: block;}
